@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="المسار الاحترافي للهندسة الميكانيكية | إنجوسوفت">
   <meta property="og:description" content="ابدأ بالمستوى التأسيسي، ثم انتقل إلى التطبيقات الاحترافية في تخصصات الهندسة الميكانيكية.">
-  <meta property="og:image" content="https://engosoft-mechanical-track.vercel.app/assets/mechanical-course-official.webp">
+  <meta property="og:image" content="https://engosoft-mechanical-track.vercel.app/assets/mechanical-hero-v3.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -141,16 +141,14 @@
       position: relative;
       display: grid;
       place-items: center;
-      padding: 34px;
+      padding: 20px;
       background: linear-gradient(140deg, #f9fcfd, #dff2f8);
       overflow: hidden;
     }
     .hero-visual img {
       width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 9;
+      height: 508px;
       object-fit: cover;
-      border: 8px solid #fff;
       border-radius: 22px 6px 22px 6px;
       box-shadow: 0 22px 50px rgba(5,42,71,.2);
     }
@@ -246,7 +244,8 @@
     @media (max-width: 900px) {
       .hero-shell, .why-grid, .register-card { grid-template-columns: 1fr; }
       .hero-copy { order: 1; }
-      .hero-visual { order: 2; min-height: 420px; }
+      .hero-visual { order: 2; min-height: 0; padding: 24px; }
+      .hero-visual img { width: min(100%, 520px); height: auto; aspect-ratio: 4 / 5; }
       .skills { grid-template-columns: repeat(2, 1fr); }
       .nav-context { display: none; }
     }
@@ -267,7 +266,7 @@
       .hero-actions .btn { width: 100%; }
       .hero-actions { margin-top: 20px; }
       .hero-proof { margin-top: 18px; }
-      .hero-visual { min-height: 0; padding: 20px; }
+      .hero-visual { padding: 20px; }
       section { padding: 54px 0; }
       .section-head { margin-bottom: 24px; }
       .skills { grid-template-columns: 1fr; }
@@ -308,7 +307,7 @@
     <section class="hero">
       <div class="container hero-shell">
         <div class="hero-visual">
-          <img src="assets/mechanical-course-official.webp" alt="الصورة الرسمية للمسار الاحترافي للهندسة الميكانيكية من إنجوسوفت" width="640" height="360" fetchpriority="high">
+          <img src="assets/mechanical-hero-v3.webp" alt="تصور هندسي لأنظمة التكييف ومكافحة الحريق والتغذية والصرف داخل مبنى حديث" width="960" height="1200" fetchpriority="high">
         </div>
         <div class="hero-copy">
           <p class="eyebrow">مسار تدريبي من مستويين</p>
