@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#052a47">
   <title>المسار الاحترافي للهندسة الميكانيكية | إنجوسوفت</title>
-  <meta name="description" content="مسار تدريبي عملي في HVAC ومكافحة الحريق والتغذية والصرف والرسومات التنفيذية من إنجوسوفت.">
+  <meta name="description" content="مسار تدريبي من مستويين في التكييف ومكافحة الحريق والتغذية والصرف وأعمال المكتب الفني من إنجوسوفت.">
   <link rel="canonical" href="https://engosoft-mechanical-track.vercel.app/">
   <meta property="og:locale" content="ar_SA">
   <meta property="og:type" content="website">
   <meta property="og:title" content="المسار الاحترافي للهندسة الميكانيكية | إنجوسوفت">
-  <meta property="og:description" content="من أساسيات التصميم إلى مخططات التنفيذ في أنظمة المباني الميكانيكية.">
-  <meta property="og:image" content="https://engosoft-mechanical-track.vercel.app/assets/mechanical-network.webp">
+  <meta property="og:description" content="ابدأ بالمستوى التأسيسي، ثم انتقل إلى التطبيقات الاحترافية في تخصصات الهندسة الميكانيكية.">
+  <meta property="og:image" content="https://engosoft-mechanical-track.vercel.app/assets/mechanical-course-official.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -141,31 +141,19 @@
       position: relative;
       display: grid;
       place-items: center;
+      padding: 34px;
       background: linear-gradient(140deg, #f9fcfd, #dff2f8);
       overflow: hidden;
     }
-    .hero-visual::before {
-      content: "MEP";
-      position: absolute;
-      top: 22px;
-      left: 22px;
-      color: rgba(5,42,71,.06);
-      font: 800 92px/1 "IBM Plex Mono";
-    }
-    .hero-visual img { width: 92%; height: 484px; object-fit: contain; mix-blend-mode: multiply; }
-    .route {
-      position: absolute;
-      inset: 0;
+    .hero-visual img {
       width: 100%;
-      height: 100%;
-      pointer-events: none;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border: 8px solid #fff;
+      border-radius: 22px 6px 22px 6px;
+      box-shadow: 0 22px 50px rgba(5,42,71,.2);
     }
-    .route path { fill: none; stroke: var(--cyan); stroke-width: 3; stroke-dasharray: 10 8; stroke-linecap: round; animation: route 1.6s ease-out 1; }
-    .route path:nth-child(2) { stroke: var(--blue); }
-    @keyframes route { from { stroke-dashoffset: 180; opacity: .2; } to { stroke-dashoffset: 0; opacity: 1; } }
-    .tech-tag { position: absolute; padding: 7px 10px; border: 1px solid #b9d8e5; border-radius: 8px; color: var(--navy); background: rgba(255,255,255,.94); font: 600 11px/1 "IBM Plex Mono"; }
-    .tag-a { top: 15%; right: 8%; }
-    .tag-b { bottom: 16%; left: 7%; }
 
     .hero-copy { padding: 48px; }
     .eyebrow { margin: 0 0 12px; color: var(--blue); font-size: 13px; font-weight: 800; }
@@ -259,7 +247,6 @@
       .hero-shell, .why-grid, .register-card { grid-template-columns: 1fr; }
       .hero-copy { order: 1; }
       .hero-visual { order: 2; min-height: 420px; }
-      .hero-visual img { height: 390px; }
       .skills { grid-template-columns: repeat(2, 1fr); }
       .nav-context { display: none; }
     }
@@ -280,9 +267,7 @@
       .hero-actions .btn { width: 100%; }
       .hero-actions { margin-top: 20px; }
       .hero-proof { margin-top: 18px; }
-      .hero-visual { min-height: 322px; }
-      .hero-visual img { height: 308px; }
-      .hero-visual::before { font-size: 62px; }
+      .hero-visual { min-height: 0; padding: 20px; }
       section { padding: 54px 0; }
       .section-head { margin-bottom: 24px; }
       .skills { grid-template-columns: 1fr; }
@@ -312,7 +297,7 @@
         <span class="nav-logo"><img src="assets/engosoft-logo.png" alt="شعار إنجوسوفت" width="244" height="84"></span>
         <span class="nav-copy"><strong>إنجوسوفت</strong><small>بيت المهندس الأول</small></span>
       </a>
-      <span class="nav-context">المسار المهني في الهندسة الميكانيكية</span>
+      <span class="nav-context">المسار الاحترافي للهندسة الميكانيكية</span>
       <a class="btn btn-primary" href="#register">اطلب التفاصيل
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -322,24 +307,18 @@
   <main id="main-content">
     <section class="hero">
       <div class="container hero-shell">
-        <div class="hero-visual" aria-label="تصور لأنظمة المباني الميكانيكية">
-          <img src="assets/mechanical-network.webp" alt="شبكات وأنظمة مبنى ميكانيكية تشمل التكييف والحريق والتغذية والصرف" width="1100" height="760" fetchpriority="high">
-          <svg class="route" viewBox="0 0 520 580" aria-hidden="true">
-            <path d="M30 100h135v80h135v-70h190"/>
-            <path d="M40 480h110v-90h150v80h180"/>
-          </svg>
-          <span class="tech-tag tag-a">HVAC / FIRE</span>
-          <span class="tech-tag tag-b">PLUMBING / SHOP</span>
+        <div class="hero-visual">
+          <img src="assets/mechanical-course-official.webp" alt="الصورة الرسمية للمسار الاحترافي للهندسة الميكانيكية من إنجوسوفت" width="640" height="360" fetchpriority="high">
         </div>
         <div class="hero-copy">
-          <p class="eyebrow">من أسس التصميم إلى المخططات التنفيذية</p>
-          <h1>المسار المهني المتكامل <span>في الهندسة الميكانيكية</span></h1>
-          <p>طوّر مهاراتك في تصميم أنظمة <span class="ltr">HVAC</span> ومكافحة الحريق والتغذية والصرف، وانتقل من الحسابات الهندسية إلى إعداد مخططات تنفيذية دقيقة تلائم متطلبات المكاتب الفنية والمشروعات.</p>
+          <p class="eyebrow">مسار تدريبي من مستويين</p>
+          <h1>المسار الاحترافي <span>للهندسة الميكانيكية</span></h1>
+          <p>ابدأ بالمستوى التأسيسي، ثم انتقل إلى المستوى الاحترافي في تصميم أنظمة التكييف ومكافحة الحريق والتغذية والصرف، مع إتقان <span class="ltr">AutoCAD</span> وأعمال المكتب الفني.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#register">اطلب تفاصيل المسار <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             <a class="btn btn-outline" href="#why-track">استعرض محتوى المسار</a>
           </div>
-          <div class="hero-proof"><span>تأسيس مهني متين</span><span>تطبيقات عملية</span><span>دعم تدريبي مستمر</span></div>
+          <div class="hero-proof"><span>مستوى تأسيسي</span><span>مستوى احترافي</span><span>تطبيقات عملية</span></div>
         </div>
       </div>
     </section>
@@ -347,15 +326,15 @@
     <section class="why-track" id="why-track">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">لماذا تختار هذا المسار؟</p>
-          <h2>لأن المشروعات تحتاج إلى مهندس يفهم المنظومة الميكانيكية متكاملة.</h2>
-          <p>يربط المسار بين الحسابات والتصميم والمخططات التنفيذية، لتكتسب رؤية متكاملة بدلًا من دراسة كل نظام بمعزل عن الآخر.</p>
+          <p class="kicker">ماذا يشمل المسار؟</p>
+          <h2>أربعة محاور أساسية في الهندسة الميكانيكية.</h2>
+          <p>تبدأ من الأساسيات، ثم تنتقل إلى التطبيقات المتقدمة وفق مستواك وخبرتك.</p>
         </div>
         <div class="skills">
-          <article class="skill"><span class="skill-code">HVAC</span><h3>التكييف والتهوية</h3><p>حساب الأحمال الحرارية، واختيار الأنظمة، وتصميم مسارات الهواء والمياه المثلجة.</p></article>
-          <article class="skill"><span class="skill-code">FIRE</span><h3>أنظمة مكافحة الحريق</h3><p>تصميم شبكات الرش الآلي والكبائن، وإجراء الحسابات الهيدروليكية، وتجهيز غرف المضخات.</p></article>
-          <article class="skill"><span class="skill-code">PLUMBING</span><h3>شبكات التغذية والصرف</h3><p>تصميم شبكات المياه والصرف والأمطار، مع اختيار المضخات والخزانات المناسبة.</p></article>
-          <article class="skill"><span class="skill-code">SHOP DRAWING</span><h3>المكتب الفني</h3><p>إعداد المخططات التنفيذية، وتنسيق الأنظمة، وحصر الكميات، وقراءة مستندات المشروع.</p></article>
+          <article class="skill"><span class="skill-code">HVAC</span><h3>التكييف والتهوية</h3><p>حساب الأحمال ببرنامج <span class="ltr">HAP</span>، وتصميم أنظمة الهواء والمياه المثلجة.</p></article>
+          <article class="skill"><span class="skill-code">FIRE FIGHTING</span><h3>مكافحة الحريق</h3><p>تصميم شبكات الرش الآلي، والحسابات الهيدروليكية، وأنظمة الغاز وغرف المضخات.</p></article>
+          <article class="skill"><span class="skill-code">PLUMBING</span><h3>التغذية والصرف</h3><p>تصميم شبكات المياه والصرف والأمطار، واختيار المضخات والخزانات المناسبة.</p></article>
+          <article class="skill"><span class="skill-code">SHOP DRAWING</span><h3>أعمال المكتب الفني</h3><p>إعداد المخططات التنفيذية وتنسيق الأعمال باستخدام <span class="ltr">AutoCAD</span> و<span class="ltr">AutoFLUID</span>.</p></article>
         </div>
       </div>
     </section>
@@ -364,13 +343,13 @@
       <div class="container why-grid">
         <div>
           <p class="kicker">لماذا إنجوسوفت؟</p>
-          <h2>تدريب هندسي يربط المعرفة بالتطبيق.</h2>
-          <p class="stat"><b>50,000+</b> متدرب ضمن مجتمع إنجوسوفت في تخصصات هندسية متنوعة.</p>
+          <h2>تعلّم وفق مسار يناسب خبرتك.</h2>
+          <p class="stat"><b>مستويان</b> تأسيسي للمبتدئ، واحترافي لمن يريد التعمق.</p>
         </div>
         <div class="reasons">
-          <div class="reason"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><b>محتوى مواكب لسوق العمل</b><span>تبدأ من الأسس، ثم تنتقل إلى المهارات التي يحتاج إليها المهندس في المكتب والموقع.</span></div></div>
-          <div class="reason"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><b>مدربون ذوو خبرة تطبيقية</b><span>شرح منهجي يربط الأكواد الهندسية بالحسابات ومتطلبات اتخاذ القرار.</span></div></div>
-          <div class="reason"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><b>متابعة طوال رحلة التعلّم</b><span>دعم فني وأكاديمي يساعدك على الاستفادة من محتوى البرنامج بفاعلية.</span></div></div>
+          <div class="reason"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><b>ابدأ من الأساسيات</b><span>المستوى التأسيسي مناسب لبدء التعلّم حتى مع الخبرة المحدودة.</span></div></div>
+          <div class="reason"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><b>تعلّم من خلال التطبيق</b><span>شرح عملي وتمارين تساعدك على فهم خطوات التصميم وإعداد المخططات.</span></div></div>
+          <div class="reason"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><b>تقدّم إلى المستوى الاحترافي</b><span>تعمّق في الأنظمة المتقدمة وأعمال المكتب الفني وفق أهدافك المهنية.</span></div></div>
         </div>
       </div>
     </section>
