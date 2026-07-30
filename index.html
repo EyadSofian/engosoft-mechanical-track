@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://engosoft-mechanical-track.vercel.app/assets/mechanical-network.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #052a47;
@@ -40,8 +40,8 @@
       margin: 0;
       color: var(--ink);
       background: var(--white);
-      font-family: "Noto Sans Arabic", Tahoma, Arial, sans-serif;
-      line-height: 1.8;
+      font-family: "Noto Kufi Arabic", Tahoma, Arial, sans-serif;
+      line-height: 1.75;
       overflow-x: hidden;
     }
     img { display: block; max-width: 100%; }
@@ -58,13 +58,42 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      border-bottom: 1px solid rgba(5, 42, 71, .09);
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(16px);
+      padding: 10px 0;
+      background: linear-gradient(180deg, rgba(238,248,251,.96), rgba(238,248,251,.72));
+      backdrop-filter: blur(18px);
     }
-    .nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .nav img { width: 118px; height: auto; }
-    .nav-label { margin-inline-start: auto; color: var(--navy); font-size: 13px; font-weight: 800; }
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 8px 10px 8px 16px;
+      border: 1px solid rgba(5,42,71,.12);
+      border-radius: 18px;
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 12px 34px rgba(5,42,71,.1);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .nav-logo { display: grid; place-items: center; width: 116px; height: 46px; flex: 0 0 116px; }
+    .nav-logo img { display: block; width: auto; height: 34px; max-width: 110px; object-fit: contain; }
+    .nav-copy { display: grid; gap: 1px; line-height: 1.45; }
+    .nav-copy strong { color: var(--navy); font-size: 13px; }
+    .nav-copy small { color: var(--muted); font-size: 10px; font-weight: 600; }
+    .nav-context {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-inline-start: auto;
+      padding: 8px 13px;
+      border: 1px solid #c9e1ea;
+      border-radius: 999px;
+      color: var(--navy);
+      background: var(--pale-2);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .nav-context::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 4px rgba(21,147,196,.13); }
 
     .btn {
       min-height: 50px;
@@ -87,7 +116,7 @@
     .btn svg { width: 19px; height: 19px; }
 
     .hero {
-      padding: 38px 0 72px;
+      padding: 18px 0 64px;
       background:
         linear-gradient(rgba(5,42,71,.045) 1px, transparent 1px),
         linear-gradient(90deg, rgba(5,42,71,.045) 1px, transparent 1px),
@@ -95,7 +124,7 @@
       background-size: 34px 34px;
     }
     .hero-shell {
-      min-height: 580px;
+      min-height: 548px;
       position: relative;
       display: grid;
       grid-template-columns: .95fr 1.05fr;
@@ -107,7 +136,7 @@
       overflow: hidden;
     }
     .hero-visual {
-      min-height: 580px;
+      min-height: 548px;
       position: relative;
       display: grid;
       place-items: center;
@@ -122,7 +151,7 @@
       color: rgba(5,42,71,.06);
       font: 800 92px/1 "IBM Plex Mono";
     }
-    .hero-visual img { width: 94%; height: 520px; object-fit: contain; mix-blend-mode: multiply; }
+    .hero-visual img { width: 92%; height: 484px; object-fit: contain; mix-blend-mode: multiply; }
     .route {
       position: absolute;
       inset: 0;
@@ -137,26 +166,26 @@
     .tag-a { top: 15%; right: 8%; }
     .tag-b { bottom: 16%; left: 7%; }
 
-    .hero-copy { padding: 56px; }
-    .eyebrow { margin: 0 0 13px; color: var(--blue); font-size: 14px; font-weight: 800; }
-    h1 { margin: 0; color: var(--navy-deep); font-size: clamp(40px, 5vw, 66px); line-height: 1.28; letter-spacing: 0; }
+    .hero-copy { padding: 48px; }
+    .eyebrow { margin: 0 0 12px; color: var(--blue); font-size: 13px; font-weight: 800; }
+    h1 { margin: 0; color: var(--navy-deep); font-size: clamp(38px, 4.5vw, 58px); line-height: 1.45; letter-spacing: 0; }
     h1 span { color: var(--blue); }
-    .hero-copy > p:not(.eyebrow) { max-width: 590px; margin: 22px 0 0; color: var(--muted); font-size: 17px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; }
-    .hero-proof { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+    .hero-copy > p:not(.eyebrow) { max-width: 590px; margin: 16px 0 0; color: var(--muted); font-size: 15px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 24px; }
+    .hero-proof { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
     .hero-proof span { padding: 7px 11px; border-radius: 999px; color: var(--navy); background: var(--pale); font-size: 12px; font-weight: 800; }
 
-    section { padding: 76px 0; }
-    .section-head { max-width: 730px; margin-bottom: 32px; }
+    section { padding: 68px 0; }
+    .section-head { max-width: 730px; margin-bottom: 28px; }
     .kicker { margin: 0 0 8px; color: var(--blue); font-size: 14px; font-weight: 800; }
-    h2 { margin: 0; color: var(--navy-deep); font-size: clamp(31px, 4vw, 48px); line-height: 1.4; letter-spacing: 0; }
-    .section-head > p:last-child { margin: 13px 0 0; color: var(--muted); }
+    h2 { margin: 0; color: var(--navy-deep); font-size: clamp(29px, 3.6vw, 43px); line-height: 1.5; letter-spacing: 0; }
+    .section-head > p:last-child { margin: 10px 0 0; color: var(--muted); }
 
     .why-track { background: #fff; }
-    .skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .skill {
-      min-height: 190px;
-      padding: 24px;
+      min-height: 178px;
+      padding: 22px;
       border: 1px solid var(--line);
       border-radius: 18px 5px 18px 5px;
       background: #fff;
@@ -164,11 +193,11 @@
     }
     .skill:hover { transform: translateY(-4px); border-color: var(--cyan); }
     .skill-code { color: var(--cyan); font: 600 12px/1 "IBM Plex Mono"; }
-    .skill h3 { margin: 18px 0 7px; color: var(--navy); font-size: 19px; line-height: 1.4; }
+    .skill h3 { margin: 14px 0 6px; color: var(--navy); font-size: 17px; line-height: 1.65; }
     .skill p { margin: 0; color: var(--muted); font-size: 14px; }
 
-    .why-engosoft { padding: 70px 0; color: #fff; background: var(--navy-deep); }
-    .why-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
+    .why-engosoft { padding: 64px 0; color: #fff; background: var(--navy-deep); }
+    .why-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; }
     .why-grid h2 { color: #fff; }
     .why-grid .kicker { color: #71cce7; }
     .stat { margin-top: 20px; color: #d9e9f0; }
@@ -189,10 +218,10 @@
       box-shadow: var(--shadow);
       overflow: hidden;
     }
-    .register-copy { padding: 42px; color: #fff; background: linear-gradient(145deg, var(--navy), var(--blue)); }
-    .register-copy h2 { color: #fff; font-size: 38px; }
+    .register-copy { padding: 38px; color: #fff; background: linear-gradient(145deg, var(--navy), var(--blue)); }
+    .register-copy h2 { color: #fff; font-size: 34px; }
     .register-copy p { color: #d6e9f2; }
-    .form-wrap { padding: 40px; }
+    .form-wrap { padding: 36px; }
     .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
     .field { display: grid; gap: 6px; }
     .field.full, .consent, .form-actions { grid-column: 1 / -1; }
@@ -228,31 +257,38 @@
     @media (max-width: 900px) {
       .hero-shell, .why-grid, .register-card { grid-template-columns: 1fr; }
       .hero-copy { order: 1; }
-      .hero-visual { order: 2; min-height: 480px; }
-      .hero-visual img { height: 440px; }
+      .hero-visual { order: 2; min-height: 420px; }
+      .hero-visual img { height: 390px; }
       .skills { grid-template-columns: repeat(2, 1fr); }
+      .nav-context { display: none; }
     }
     @media (max-width: 620px) {
       .container { width: min(calc(100% - 26px), var(--container)); }
-      .nav { min-height: 66px; }
-      .nav img { width: 104px; }
-      .nav-label, .nav > .btn { display: none; }
-      .hero { padding: 20px 0 56px; }
+      header { padding: 8px 0; }
+      .nav { min-height: 62px; padding: 7px 8px 7px 11px; border-radius: 15px; gap: 8px; }
+      .nav-logo { width: 102px; height: 42px; flex-basis: 102px; }
+      .nav-logo img { height: 30px; max-width: 96px; }
+      .nav-copy { display: none; }
+      .nav .btn { min-height: 44px; padding: 8px 15px; font-size: 12px; }
+      .hero { padding: 10px 0 48px; }
       .hero-shell { min-height: 0; border-radius: 20px 5px 20px 5px; }
-      .hero-copy { padding: 34px 22px 30px; }
-      h1 { font-size: 37px; line-height: 1.35; }
-      .hero-copy > p:not(.eyebrow) { font-size: 15px; }
+      .hero-copy { padding: 30px 20px 26px; }
+      h1 { font-size: 32px; line-height: 1.55; }
+      .hero-copy > p:not(.eyebrow) { margin-top: 12px; font-size: 14px; }
       .hero-actions { display: grid; }
       .hero-actions .btn { width: 100%; }
-      .hero-visual { min-height: 360px; }
-      .hero-visual img { height: 350px; }
+      .hero-actions { margin-top: 20px; }
+      .hero-proof { margin-top: 18px; }
+      .hero-visual { min-height: 322px; }
+      .hero-visual img { height: 308px; }
       .hero-visual::before { font-size: 62px; }
-      section { padding: 60px 0; }
+      section { padding: 54px 0; }
+      .section-head { margin-bottom: 24px; }
       .skills { grid-template-columns: 1fr; }
       .skill { min-height: 0; }
-      .why-grid { gap: 32px; }
-      .register-copy, .form-wrap { padding: 28px 21px; }
-      .register-copy h2 { font-size: 32px; }
+      .why-grid { gap: 28px; }
+      .register-copy, .form-wrap { padding: 26px 20px; }
+      .register-copy h2 { font-size: 29px; }
       .form-grid { grid-template-columns: 1fr; }
       .field, .field.full, .consent, .form-actions { grid-column: 1; }
       .footer { align-items: stretch; flex-direction: column; gap: 20px; }
@@ -271,9 +307,14 @@
   <a class="skip-link" href="#main-content">تخطَّ إلى المحتوى</a>
   <header>
     <div class="container nav">
-      <a href="#main-content" aria-label="إنجوسوفت - بداية الصفحة"><img src="assets/engosoft-logo.png" alt="شعار إنجوسوفت" width="244" height="84"></a>
-      <span class="nav-label">المسار الاحترافي للهندسة الميكانيكية</span>
-      <a class="btn btn-primary" href="#register">سجّل اهتمامك</a>
+      <a class="nav-brand" href="#main-content" aria-label="إنجوسوفت - بداية الصفحة">
+        <span class="nav-logo"><img src="assets/engosoft-logo.png" alt="شعار إنجوسوفت" width="244" height="84"></span>
+        <span class="nav-copy"><strong>إنجوسوفت</strong><small>بيت المهندس الأول</small></span>
+      </a>
+      <span class="nav-context">المسار الاحترافي للهندسة الميكانيكية</span>
+      <a class="btn btn-primary" href="#register">سجّل الآن
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
   </header>
 
