@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#052a47">
+  <title>المسار الاحترافي للهندسة الميكانيكية | إنجوسوفت</title>
+  <meta name="description" content="طوّر مهاراتك في تصميم أنظمة HVAC ومكافحة الحريق والتغذية والصرف والرسومات التنفيذية من خلال مسار ميكانيكي عملي من إنجوسوفت.">
+  <link rel="canonical" href="https://engosoft-mechanical-track.vercel.app/">
+  <meta property="og:locale" content="ar_SA">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="المسار الاحترافي للهندسة الميكانيكية | إنجوسوفت">
+  <meta property="og:description" content="من أساسيات التصميم إلى مخططات التنفيذ في أنظمة المباني الميكانيكية.">
+  <meta property="og:url" content="https://engosoft-mechanical-track.vercel.app/">
+  <meta property="og:image" content="https://engosoft-mechanical-track.vercel.app/assets/mechanical-network.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-950: #031c31;
+      --navy-900: #052a47;
+      --navy-800: #073b60;
+      --blue-600: #0579b8;
+      --cyan-500: #1593c4;
+      --cyan-300: #67c7e6;
+      --cyan-100: #ddefF6;
+      --cyan-050: #eef8fb;
+      --amber-500: #d68620;
+      --amber-100: #fff1dc;
+      --ink: #0c1e2c;
+      --muted: #536776;
+      --line: #c9dbe4;
+      --surface: #ffffff;
+      --surface-2: #f3f5f7;
+      --success: #08775a;
+      --danger: #b42318;
+      --shadow-sm: 0 10px 30px rgba(5, 42, 71, .08);
+      --shadow-lg: 0 30px 80px rgba(5, 42, 71, .16);
+      --radius-sm: 12px;
+      --radius: 20px;
+      --radius-lg: 32px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--surface);
+      font-family: "Cairo", system-ui, sans-serif;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    :focus-visible { outline: 3px solid var(--cyan-300); outline-offset: 3px; }
+    .ltr { direction: ltr; unicode-bidi: isolate; font-family: "IBM Plex Mono", monospace; }
+    .container { width: min(calc(100% - 40px), var(--container)); margin-inline: auto; }
+    .section { padding: 104px 0; position: relative; }
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue-600);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      margin: 0 0 12px;
+    }
+    .section-kicker::before {
+      content: "";
+      width: 36px;
+      height: 2px;
+      background: var(--cyan-500);
+    }
+    .section-title {
+      max-width: 830px;
+      margin: 0;
+      color: var(--navy-950);
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 1.25;
+      letter-spacing: -.045em;
+    }
+    .section-copy {
+      max-width: 790px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(5, 42, 71, .08);
+      background: rgba(255, 255, 255, .9);
+      backdrop-filter: blur(18px);
+    }
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+    .brand { display: flex; align-items: center; gap: 16px; min-width: 0; }
+    .brand img { width: 122px; height: auto; }
+    .brand-line { width: 1px; height: 34px; background: var(--line); }
+    .brand-title { color: var(--navy-900); font-size: 13px; font-weight: 800; line-height: 1.45; }
+    .nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 700; color: #395163; }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover { color: var(--blue-600); }
+
+    .btn {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 22px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 800;
+      line-height: 1.4;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: scale(.98); }
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue-600), var(--cyan-500));
+      box-shadow: 0 12px 26px rgba(5, 121, 184, .24);
+    }
+    .btn-primary:hover { box-shadow: 0 16px 34px rgba(5, 121, 184, .32); }
+    .btn-outline { color: var(--navy-900); border-color: var(--line); background: rgba(255,255,255,.78); }
+    .btn-outline:hover { color: var(--blue-600); border-color: var(--cyan-500); }
+    .btn svg { width: 20px; height: 20px; flex: 0 0 auto; }
+
+    .hero {
+      min-height: 700px;
+      padding: 74px 0 44px;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(5,42,71,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(5,42,71,.045) 1px, transparent 1px),
+        radial-gradient(circle at 75% 20%, rgba(21,147,196,.14), transparent 34%),
+        linear-gradient(180deg, #fafdff 0%, #fff 100%);
+      background-size: 36px 36px, 36px 36px, auto, auto;
+    }
+    .hero::before {
+      content: "MEP / 01";
+      position: absolute;
+      top: 32px;
+      left: 4vw;
+      color: rgba(5,42,71,.08);
+      font: 800 clamp(70px, 10vw, 160px)/1 "IBM Plex Mono", monospace;
+      letter-spacing: -.09em;
+      z-index: -1;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 64px;
+    }
+    .hero-copy { position: relative; z-index: 2; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px;
+      color: var(--navy-900);
+      background: var(--amber-100);
+      border: 1px solid #f0c581;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .eyebrow span {
+      width: 9px;
+      height: 9px;
+      background: var(--amber-500);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(214,134,32,.12);
+    }
+    h1 {
+      margin: 22px 0 18px;
+      color: var(--navy-950);
+      font-size: clamp(40px, 5.2vw, 72px);
+      line-height: 1.15;
+      letter-spacing: -.06em;
+    }
+    h1 em { display: block; color: var(--blue-600); font-style: normal; }
+    .hero-copy > p {
+      max-width: 670px;
+      margin: 0;
+      color: #3c5567;
+      font-size: 18px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .micro-proof { display: flex; align-items: center; gap: 16px; margin-top: 28px; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .micro-proof b { color: var(--navy-900); font-size: 16px; }
+    .proof-dots { display: flex; direction: ltr; }
+    .proof-dots span { width: 30px; height: 30px; display: grid; place-items: center; margin-left: -7px; border: 2px solid #fff; border-radius: 50%; color: #fff; background: var(--navy-900); font: 700 10px/1 "IBM Plex Mono"; }
+
+    .system-viz {
+      min-height: 560px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .viz-frame {
+      width: min(100%, 510px);
+      aspect-ratio: .95;
+      position: relative;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(5,121,184,.22);
+      border-radius: 36px 8px 36px 8px;
+      background: rgba(255,255,255,.82);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      transform: rotate(-1.2deg);
+    }
+    .viz-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 49.8%, rgba(21,147,196,.13) 50%, transparent 50.2%),
+        linear-gradient(transparent 49.8%, rgba(21,147,196,.13) 50%, transparent 50.2%);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .viz-frame img { width: 88%; height: 88%; object-fit: contain; mix-blend-mode: multiply; filter: saturate(.95) contrast(1.04); }
+    .pipe-overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .pipe { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; stroke-dasharray: 8 7; animation: dash 1.8s ease-out 1; }
+    .pipe.hvac { stroke: var(--cyan-500); }
+    .pipe.fire { stroke: #d64c4c; }
+    .pipe.water { stroke: #2f72db; }
+    @keyframes dash { to { stroke-dashoffset: -180; } }
+    .viz-tag {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--navy-900);
+      background: rgba(255,255,255,.94);
+      box-shadow: var(--shadow-sm);
+      font: 700 12px/1 "IBM Plex Mono", monospace;
+    }
+    .viz-tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan-500); }
+    .tag-1 { top: 12%; right: -8%; }
+    .tag-2 { bottom: 17%; left: -8%; }
+    .tag-2::before { background: #d64c4c; }
+    .tag-3 { bottom: 2%; right: 8%; }
+    .tag-3::before { background: #2f72db; }
+    .measure { position: absolute; color: rgba(5,42,71,.4); font: 600 10px/1 "IBM Plex Mono"; letter-spacing: .1em; }
+    .measure-v { top: 50%; left: -50px; transform: rotate(-90deg); }
+    .measure-h { top: -24px; left: 32%; }
+
+    .trust-strip { margin-top: 52px; border-block: 1px solid var(--line); background: rgba(255,255,255,.76); }
+    .trust-grid { min-height: 92px; display: grid; grid-template-columns: repeat(4, 1fr); align-items: stretch; }
+    .trust-item { display: flex; align-items: center; gap: 12px; padding: 20px; border-inline-start: 1px solid var(--line); font-size: 13px; font-weight: 800; color: #395163; }
+    .trust-item:first-child { border-inline-start: 0; }
+    .trust-item svg { width: 24px; height: 24px; color: var(--blue-600); flex: 0 0 auto; }
+
+    .outcomes { background: var(--surface-2); overflow: hidden; }
+    .outcomes::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(5,121,184,.16) 1px, transparent 1px);
+      background-size: 20px 20px;
+      mask-image: linear-gradient(to bottom, black, transparent 55%);
+      pointer-events: none;
+    }
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+      margin-top: 44px;
+      position: relative;
+    }
+    .outcome-card {
+      grid-column: span 4;
+      min-height: 310px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 22px 6px 22px 6px;
+      background: rgba(255,255,255,.93);
+      box-shadow: 0 1px 0 #fff inset;
+      overflow: hidden;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+    .outcome-card:nth-child(4), .outcome-card:nth-child(5) { grid-column: span 6; min-height: 280px; }
+    .outcome-card:hover { transform: translateY(-5px); border-color: rgba(21,147,196,.55); box-shadow: var(--shadow-sm); }
+    .outcome-card::after {
+      content: attr(data-code);
+      position: absolute;
+      left: 16px;
+      bottom: 8px;
+      color: rgba(5,42,71,.055);
+      font: 800 64px/1 "IBM Plex Mono";
+    }
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .card-number { color: var(--cyan-500); font: 700 12px/1 "IBM Plex Mono"; }
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #bfe0ec;
+      border-radius: 14px 4px 14px 4px;
+      color: var(--blue-600);
+      background: var(--cyan-050);
+    }
+    .card-icon svg { width: 28px; height: 28px; }
+    .outcome-card h3 { margin: 24px 0 8px; color: var(--navy-900); font-size: 23px; line-height: 1.35; }
+    .outcome-card .en { margin: 0 0 12px; color: var(--cyan-500); font: 600 12px/1.4 "IBM Plex Mono"; direction: ltr; text-align: right; }
+    .outcome-card p:last-child { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .journey {
+      margin-top: 66px;
+      padding: 34px;
+      position: relative;
+      border: 1px solid #b8d9e7;
+      border-radius: 28px 8px 28px 8px;
+      background: linear-gradient(120deg, #fff, var(--cyan-050));
+      overflow: hidden;
+    }
+    .journey::before { content: "PROGRESSION"; position: absolute; left: 30px; top: 20px; color: rgba(5,42,71,.06); font: 800 52px/1 "IBM Plex Mono"; }
+    .journey-head { position: relative; display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+    .journey h3 { margin: 0; color: var(--navy-900); font-size: 28px; }
+    .journey-head p { max-width: 520px; margin: 0; color: var(--muted); font-size: 14px; }
+    .journey-rail { display: grid; grid-template-columns: 1fr 82px 1fr; align-items: stretch; }
+    .stage { padding: 26px; border: 1px solid var(--line); background: #fff; }
+    .stage:first-child { border-radius: 18px 5px 5px 18px; }
+    .stage:last-child { border-radius: 5px 18px 18px 5px; border-color: #77c0db; background: var(--navy-900); color: #fff; }
+    .stage small { display: block; margin-bottom: 8px; color: var(--cyan-500); font: 700 11px/1 "IBM Plex Mono"; }
+    .stage h4 { margin: 0 0 8px; font-size: 22px; }
+    .stage p { margin: 0; color: var(--muted); font-size: 14px; }
+    .stage:last-child p { color: #c6dce8; }
+    .stage-arrow { position: relative; display: grid; place-items: center; background: var(--amber-500); clip-path: polygon(0 0, 64% 0, 100% 50%, 64% 100%, 0 100%, 36% 50%); color: #fff; }
+    .stage-arrow svg { width: 27px; height: 27px; transform: rotate(180deg); }
+    .tools-wrap { margin-top: 28px; }
+    .tools-label { margin: 0 0 10px; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .tools-row { display: flex; flex-wrap: wrap; gap: 10px; direction: ltr; }
+    .tool { min-height: 42px; display: inline-flex; align-items: center; padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px; color: var(--navy-900); background: #fff; font: 600 12px/1 "IBM Plex Mono"; }
+
+    .audience { padding: 70px 0; background: var(--navy-950); color: #fff; }
+    .audience-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: center; }
+    .audience h2 { margin: 0; font-size: clamp(30px, 4vw, 52px); line-height: 1.25; }
+    .audience h2 span { color: var(--cyan-300); }
+    .audience-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .audience-chip { min-height: 62px; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid rgba(103,199,230,.22); border-radius: 12px 4px 12px 4px; background: rgba(255,255,255,.05); color: #d9e8f0; font-size: 14px; font-weight: 700; }
+    .audience-chip span { width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; background: var(--amber-500); }
+
+    .engosoft { background: #fff; }
+    .engosoft-head { display: grid; grid-template-columns: 1fr .8fr; gap: 60px; align-items: end; }
+    .big-stat { padding: 28px; border-inline-start: 4px solid var(--amber-500); background: var(--amber-100); }
+    .big-stat b { display: block; color: var(--navy-900); font: 800 clamp(40px, 5vw, 72px)/1 "IBM Plex Mono"; }
+    .big-stat span { color: #634619; font-weight: 700; }
+    .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 42px; }
+    .proof-card { min-height: 190px; padding: 26px; border: 1px solid var(--line); border-radius: 18px 5px 18px 5px; background: #fff; }
+    .proof-card svg { width: 28px; height: 28px; color: var(--blue-600); }
+    .proof-card h3 { margin: 18px 0 7px; color: var(--navy-900); font-size: 18px; }
+    .proof-card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .source-note { margin: 20px 0 0; color: var(--muted); font-size: 12px; }
+
+    .register {
+      padding: 110px 0;
+      background:
+        linear-gradient(rgba(255,255,255,.94), rgba(255,255,255,.94)),
+        url("assets/site-network.webp") center / cover;
+    }
+    .register-shell {
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      border: 1px solid var(--line);
+      border-radius: 32px 8px 32px 8px;
+      background: #fff;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .register-copy { padding: 52px; color: #fff; background: var(--navy-950); position: relative; overflow: hidden; }
+    .register-copy::before { content: ""; position: absolute; width: 270px; height: 270px; left: -100px; bottom: -120px; border: 54px solid rgba(21,147,196,.14); border-radius: 50%; }
+    .register-copy .section-kicker { color: var(--cyan-300); }
+    .register-copy h2 { margin: 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.25; }
+    .register-copy > p { color: #c6dce8; }
+    .register-points { display: grid; gap: 12px; margin-top: 32px; }
+    .register-point { display: flex; align-items: center; gap: 10px; color: #e2eff5; font-size: 14px; font-weight: 700; }
+    .register-point svg { width: 20px; height: 20px; color: var(--cyan-300); }
+    .form-wrap { padding: 46px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    label { color: var(--navy-900); font-size: 13px; font-weight: 800; }
+    input, select {
+      width: 100%;
+      min-height: 52px;
+      padding: 11px 13px;
+      border: 1px solid #bdced8;
+      border-radius: 10px;
+      color: var(--ink);
+      background: #fff;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    input:focus, select:focus { border-color: var(--cyan-500); box-shadow: 0 0 0 4px rgba(21,147,196,.12); outline: none; }
+    .phone-group { display: grid; grid-template-columns: 1fr 100px; direction: ltr; gap: 8px; }
+    .phone-group input { direction: ltr; text-align: left; }
+    .phone-group select { direction: rtl; }
+    .consent { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .consent input { width: 18px; min-height: 18px; height: 18px; margin-top: 3px; accent-color: var(--blue-600); }
+    .form-actions { grid-column: 1 / -1; display: grid; gap: 12px; }
+    .form-actions .btn { width: 100%; }
+    .form-status { min-height: 24px; margin: 0; font-size: 13px; }
+    .form-status.success { color: var(--success); }
+    .form-status.error { color: var(--danger); }
+    .whatsapp-fallback { display: none; color: var(--success); font-size: 13px; font-weight: 800; text-decoration: underline; }
+    .hp { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
+
+    footer { padding: 34px 0 100px; border-top: 1px solid var(--line); background: var(--surface-2); }
+    .footer-grid { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .footer-grid img { width: 112px; }
+    .footer-copy { color: var(--muted); font-size: 12px; }
+    .footer-links { display: flex; gap: 18px; color: var(--navy-900); font-size: 13px; font-weight: 700; }
+
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      right: 12px;
+      left: 12px;
+      bottom: max(12px, env(safe-area-inset-bottom));
+      z-index: 70;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .mobile-cta.hidden { opacity: 0; transform: translateY(110%); pointer-events: none; }
+    .mobile-cta .btn { width: 100%; min-height: 56px; border-radius: 14px; }
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 100;
+      padding: 10px 16px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--navy-950);
+      transform: translateY(-160%);
+      transition: transform .2s ease;
+    }
+    .skip-link:focus { transform: none; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.8,.2,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .hero-grid, .engosoft-head, .audience-grid, .register-shell { grid-template-columns: 1fr; }
+      .hero { padding-top: 54px; }
+      .hero-grid { gap: 46px; }
+      .system-viz { min-height: auto; }
+      .viz-frame { width: min(86vw, 540px); }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(3) { border-inline-start: 0; border-top: 1px solid var(--line); }
+      .trust-item:nth-child(4) { border-top: 1px solid var(--line); }
+      .outcome-card { grid-column: span 6; }
+      .outcome-card:last-child { grid-column: 4 / span 6; }
+      .proof-grid { grid-template-columns: repeat(2, 1fr); }
+      .register-copy, .form-wrap { padding: 38px; }
+    }
+
+    @media (max-width: 680px) {
+      .container { width: min(calc(100% - 28px), var(--container)); }
+      .section { padding: 76px 0; }
+      .nav { min-height: 68px; }
+      .brand img { width: 102px; }
+      .brand-line, .brand-title, .nav .btn { display: none; }
+      .hero { padding-top: 40px; }
+      .hero::before { font-size: 72px; top: 80px; }
+      h1 { font-size: 42px; }
+      .hero-copy > p, .section-copy { font-size: 16px; }
+      .hero-actions { display: grid; }
+      .hero-actions .btn { width: 100%; }
+      .system-viz { order: 2; padding: 26px 10px 10px; }
+      .viz-frame { width: 100%; border-radius: 24px 6px 24px 6px; }
+      .tag-1 { top: 7%; right: -5px; }
+      .tag-2 { bottom: 19%; left: -5px; }
+      .tag-3 { bottom: 2%; right: 12%; }
+      .trust-strip { margin-top: 38px; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .trust-item, .trust-item:nth-child(3), .trust-item:nth-child(4) { border-inline-start: 0; border-top: 1px solid var(--line); }
+      .trust-item:first-child { border-top: 0; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .outcome-card, .outcome-card:nth-child(4), .outcome-card:nth-child(5), .outcome-card:last-child { grid-column: 1; min-height: 0; }
+      .journey { padding: 24px 18px; }
+      .journey-head { display: block; }
+      .journey-head p { margin-top: 10px; }
+      .journey-rail { grid-template-columns: 1fr; }
+      .stage:first-child, .stage:last-child { border-radius: 14px; }
+      .stage-arrow { min-height: 54px; clip-path: polygon(0 0, 100% 0, 100% 65%, 50% 100%, 0 65%); }
+      .stage-arrow svg { transform: rotate(90deg); }
+      .tools-row { flex-wrap: nowrap; overflow-x: auto; padding: 3px 0 10px; scrollbar-width: thin; }
+      .tool { flex: 0 0 auto; }
+      .audience-list, .proof-grid, .form-grid { grid-template-columns: 1fr; }
+      .audience-chip { min-height: 56px; }
+      .big-stat { margin-top: 12px; }
+      .register { padding: 76px 0; }
+      .register-copy, .form-wrap { padding: 30px 22px; }
+      .field, .field.full, .consent, .form-actions { grid-column: 1; }
+      .footer-grid { align-items: flex-start; flex-direction: column; }
+      .mobile-cta { display: block; }
+      footer { padding-bottom: 112px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Engosoft",
+    "url": "https://engosoft.com/",
+    "logo": "https://engosoft.com/web/image/website/1/logo",
+    "telephone": "+966920016295",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "13243 شارع الراجحية، حي اليرموك، الدور الأول، وحدة 1",
+      "addressLocality": "الرياض",
+      "addressCountry": "SA"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">تخطَّ إلى المحتوى</a>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#main-content" aria-label="إنجوسوفت - بداية الصفحة">
+        <img src="assets/engosoft-logo.png" alt="شعار إنجوسوفت" width="244" height="84">
+        <span class="brand-line" aria-hidden="true"></span>
+        <span class="brand-title">المسار الاحترافي<br>للهندسة الميكانيكية</span>
+      </a>
+      <nav class="nav-links" aria-label="التنقل داخل الصفحة">
+        <a href="#skills">المهارات</a>
+        <a href="#journey">المستويات</a>
+        <a href="#why-us">لماذا إنجوسوفت؟</a>
+      </nav>
+      <a class="btn btn-primary" href="#register" data-event="header_cta">
+        سجّل اهتمامك
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span aria-hidden="true"></span> من التصميم إلى الرسومات التنفيذية</div>
+          <h1>المسار الاحترافي <em>للهندسة الميكانيكية</em></h1>
+          <p>ابنِ خبرة عملية مترابطة في أنظمة <span class="ltr">HVAC</span> ومكافحة الحريق والتغذية والصرف، ثم حوّل الحسابات إلى مخططات تنفيذية واضحة باستخدام أدوات المكتب الفني.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#register" data-event="hero_primary">
+              سجّل اهتمامك بالمسار
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-outline" href="#skills" data-event="hero_secondary">تعرّف على المهارات</a>
+          </div>
+          <div class="micro-proof">
+            <div class="proof-dots" aria-hidden="true"><span>HV</span><span>FF</span><span>PL</span></div>
+            <div><b>مسار واحد مترابط</b><br>من الحسابات إلى لوحات التنفيذ</div>
+          </div>
+        </div>
+
+        <div class="system-viz reveal" aria-label="تصور هندسي لأنظمة المباني الميكانيكية">
+          <span class="measure measure-h" aria-hidden="true">GRID 08 / MEP</span>
+          <span class="measure measure-v" aria-hidden="true">SCALE 1:100</span>
+          <div class="viz-frame">
+            <img src="assets/mechanical-network.webp" alt="نموذج هندسي يوضح شبكات وأنظمة مبنى ميكانيكية" width="1100" height="760" fetchpriority="high">
+            <svg class="pipe-overlay" viewBox="0 0 500 520" fill="none" aria-hidden="true">
+              <path class="pipe hvac" d="M26 92H154V145H260V79H449"/>
+              <path class="pipe fire" d="M35 418H119V348H231V448H462"/>
+              <path class="pipe water" d="M438 167H370V238H294V319H72"/>
+              <circle cx="154" cy="145" r="7" fill="#fff" stroke="#1593c4" stroke-width="3"/>
+              <circle cx="231" cy="348" r="7" fill="#fff" stroke="#d64c4c" stroke-width="3"/>
+              <circle cx="294" cy="238" r="7" fill="#fff" stroke="#2f72db" stroke-width="3"/>
+            </svg>
+          </div>
+          <span class="viz-tag tag-1">HVAC / AIR</span>
+          <span class="viz-tag tag-2">FIRE / LOOP</span>
+          <span class="viz-tag tag-3">PLUMBING</span>
+        </div>
+      </div>
+
+      <div class="trust-strip">
+        <div class="container trust-grid">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m12 3 8 4v5c0 5-3.4 8.5-8 9-4.6-.5-8-4-8-9V7l8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+            مستوى تأسيسي واحترافي
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h16M6 20V9l6-5 6 5v11"/><path d="M9 20v-5h6v5"/></svg>
+            تطبيقات ومشاريع عملية
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            تعلّم مرن وفق نظام البرنامج
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 17V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10"/><path d="M8 21h8M12 17v4M8 10h8M8 14h5"/></svg>
+            دعم فني وأكاديمي
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section outcomes" id="skills">
+      <div class="container">
+        <p class="section-kicker reveal">المخرجات المهنية</p>
+        <h2 class="section-title reveal">لا تتعلم كل نظام بمعزل عن الآخر؛ تعلّم كيف تعمل المنظومة كاملة.</h2>
+        <p class="section-copy reveal">سوق العمل يحتاج مهندسًا يربط بين التصميم والحسابات والرسومات التنفيذية والتطبيق الفعلي. لذلك ينتقل المسار عبر خمس قدرات أساسية.</p>
+
+        <div class="outcome-grid">
+          <article class="outcome-card reveal" data-code="HVAC">
+            <div class="card-top">
+              <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h16M6 12h12M8 16h8"/><path d="M5 5v14M19 5v14"/></svg></span>
+              <span class="card-number">01 / 05</span>
+            </div>
+            <h3>تصميم أنظمة التكييف والتهوية</h3>
+            <p class="en">HVAC SYSTEM DESIGN</p>
+            <p>فهم خصائص الهواء، حساب الأحمال باستخدام <span class="ltr">HAP</span>، اختيار الأنظمة، وتصميم مسارات الهواء والمياه المثلجة.</p>
+          </article>
+
+          <article class="outcome-card reveal" data-code="FIRE">
+            <div class="card-top">
+              <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22c4 0 7-3 7-7 0-5-4-7-3-12-4 2-5 5-5 8-2-1-3-3-3-5-2 2-3 5-3 8 0 5 3 8 7 8Z"/><path d="M10 19c-1-3 1-5 2-7 2 2 3 4 2 7"/></svg></span>
+              <span class="card-number">02 / 05</span>
+            </div>
+            <h3>تصميم أنظمة مكافحة الحريق</h3>
+            <p class="en">FIREFIGHTING SYSTEMS</p>
+            <p>توزيع الكبائن والرشاشات، الحسابات الهيدروليكية، غرف المضخات، الخزانات وأنظمة الإطفاء وفق الأكواد.</p>
+          </article>
+
+          <article class="outcome-card reveal" data-code="PLMB">
+            <div class="card-top">
+              <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3S6 10 6 15a6 6 0 0 0 12 0c0-5-6-12-6-12Z"/><path d="M9 16c.5 1.4 1.5 2 3 2"/></svg></span>
+              <span class="card-number">03 / 05</span>
+            </div>
+            <h3>تصميم أنظمة التغذية والصرف</h3>
+            <p class="en">PLUMBING SYSTEMS</p>
+            <p>حساب احتياجات المياه، تصميم شبكات التغذية والصرف والأمطار، واختيار المضخات وأحجام الخزانات.</p>
+          </article>
+
+          <article class="outcome-card reveal" data-code="SHOP">
+            <div class="card-top">
+              <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19V5h16v14H4Z"/><path d="m7 15 3-4 2 2 3-5 2 7M7 8h3"/></svg></span>
+              <span class="card-number">04 / 05</span>
+            </div>
+            <h3>الرسومات التنفيذية والمكتب الفني</h3>
+            <p class="en">AUTOCAD + SHOP DRAWINGS</p>
+            <p>تحويل التصميمات إلى لوحات تنفيذية، إعداد التفاصيل والحصر والتنسيق بين الأنظمة، وفهم مستندات المشروع.</p>
+          </article>
+
+          <article class="outcome-card reveal" data-code="SITE">
+            <div class="card-top">
+              <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 21h16M6 21v-8h5v8M13 21V7h5v14M4 9h7V3H4v6Z"/><path d="M7 6h1M15 10h1M15 14h1"/></svg></span>
+              <span class="card-number">05 / 05</span>
+            </div>
+            <h3>الاستعداد للموقع والتنفيذ</h3>
+            <p class="en">SITE & PROJECT READINESS</p>
+            <p>قراءة المستندات الفنية، متابعة الأعمال، فهم طرق التركيب والاستلام والاختبارات، وتقليل أخطاء التنفيذ.</p>
+          </article>
+        </div>
+
+        <div class="journey reveal" id="journey">
+          <div class="journey-head">
+            <h3>رحلة واحدة، مستويان متدرّجان</h3>
+            <p>يبدأ المسار بتثبيت الأساسيات ثم ينتقل إلى الحسابات والتنسيق واللوحات الأكثر عمقًا.</p>
+          </div>
+          <div class="journey-rail">
+            <div class="stage">
+              <small>FOUNDATION / 01</small>
+              <h4>المستوى التأسيسي</h4>
+              <p>فهم الأنظمة الأساسية، مبادئ الحساب، قراءة الأكواد وبناء قاعدة عملية صحيحة.</p>
+            </div>
+            <div class="stage-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+            <div class="stage">
+              <small>PROFESSIONAL / 02</small>
+              <h4>المستوى الاحترافي</h4>
+              <p>تصميم الشبكات والحسابات المتقدمة، التنسيق، الحصر وتجهيز اللوحات للطباعة والتنفيذ.</p>
+            </div>
+          </div>
+          <div class="tools-wrap">
+            <p class="tools-label">الأدوات والمراجع داخل المسار</p>
+            <div class="tools-row" aria-label="أدوات المسار">
+              <span class="tool">HAP</span>
+              <span class="tool">AutoCAD</span>
+              <span class="tool">AutoFluid</span>
+              <span class="tool">Duct Sizer</span>
+              <span class="tool">Pipe Sizer</span>
+              <span class="tool">Shop Drawings</span>
+              <span class="tool">Engineering Codes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="audience">
+      <div class="container audience-grid">
+        <h2 class="reveal">مصمم لمن يريد أن يرى <span>الصورة الميكانيكية كاملة.</span></h2>
+        <div class="audience-list reveal">
+          <div class="audience-chip"><span></span> مهندسو الميكانيكا</div>
+          <div class="audience-chip"><span></span> مهندسو الصيانة</div>
+          <div class="audience-chip"><span></span> مهندسو إدارة وتشغيل المباني</div>
+          <div class="audience-chip"><span></span> مهندسو المكتب الفني والمشروعات</div>
+          <div class="audience-chip"><span></span> الفنيون والعاملون بالموقع</div>
+          <div class="audience-chip"><span></span> الطلاب والخريجون الجدد</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section engosoft" id="why-us">
+      <div class="container">
+        <div class="engosoft-head">
+          <div>
+            <p class="section-kicker reveal">لماذا إنجوسوفت؟</p>
+            <h2 class="section-title reveal">لا نقدّم دورات منفصلة فقط؛ نبني مسارًا يقربك من طريقة العمل الفعلية.</h2>
+          </div>
+          <div class="big-stat reveal">
+            <b>50,000+</b>
+            <span>قصة نجاح لمتدربين من خلفيات وتخصصات مختلفة.</span>
+          </div>
+        </div>
+        <div class="proof-grid">
+          <article class="proof-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19h16M6 16l4-4 3 3 5-7"/></svg>
+            <h3>تدريب مرتبط بالسوق</h3>
+            <p>محتوى يركز على المهارات التي يستخدمها مهندس التصميم والمكتب الفني والموقع.</p>
+          </article>
+          <article class="proof-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/></svg>
+            <h3>من الأساس إلى التطبيق</h3>
+            <p>تدرّج واضح يمنع فجوات الفهم قبل الدخول في الحسابات والتفاصيل المتقدمة.</p>
+          </article>
+          <article class="proof-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18h6M10 22h4M8 14c-1.2-1-2-2.7-2-4.5a6 6 0 1 1 12 0c0 1.8-.8 3.5-2 4.5-.7.6-1 1.2-1 2H9c0-.8-.3-1.4-1-2Z"/></svg>
+            <h3>حالات ومشروعات عملية</h3>
+            <p>التعلّم حول سيناريوهات قريبة من الواقع بدل الاكتفاء بالمفاهيم النظرية.</p>
+          </article>
+          <article class="proof-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.7-4 3.3-6 8-6s7.3 2 8 6"/></svg>
+            <h3>مدربون بخبرة تطبيقية</h3>
+            <p>شرح هندسي يربط بين الكود والحساب وطريقة اتخاذ القرار داخل المشروع.</p>
+          </article>
+          <article class="proof-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M5 5h9a4 4 0 0 1 0 8H8a4 4 0 0 0 0 8h11"/></svg>
+            <h3>رحلة تعلم مرنة</h3>
+            <p>خيارات تعلم ومحاضرات مسجلة ودعم وفق النظام المتاح لكل دفعة.</p>
+          </article>
+          <article class="proof-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v12H7l-3 3V4Z"/><path d="M8 8h8M8 12h5"/></svg>
+            <h3>دعم مستمر</h3>
+            <p>متابعة فنية وأكاديمية تساعدك على تجاوز التعثر أثناء الرحلة التدريبية.</p>
+          </article>
+        </div>
+        <p class="source-note">بيانات المتدربين ومزايا إنجوسوفت موثقة من الموقع الرسمي للمنصة وقت إعداد الصفحة.</p>
+      </div>
+    </section>
+
+    <section class="register" id="register">
+      <div class="container">
+        <div class="register-shell reveal">
+          <div class="register-copy">
+            <p class="section-kicker">الخطوة التالية</p>
+            <h2>ابدأ مسارك المهني الآن</h2>
+            <p>أرسل بياناتك لمعرفة تفاصيل المواعيد ونظام الدراسة والمستوى الأنسب لخبرتك.</p>
+            <div class="register-points">
+              <div class="register-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> تواصل مباشر من فريق القبول</div>
+              <div class="register-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> تحديد المستوى المناسب لك</div>
+              <div class="register-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> بدون التزام بالدفع</div>
+            </div>
+          </div>
+          <div class="form-wrap">
+            <form id="lead-form" novalidate>
+              <div class="form-grid">
+                <div class="field full">
+                  <label for="full_name">الاسم الكامل</label>
+                  <input id="full_name" name="full_name" autocomplete="name" required placeholder="اكتب اسمك الثلاثي">
+                </div>
+                <div class="field">
+                  <label for="phone">رقم الجوال</label>
+                  <div class="phone-group">
+                    <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required placeholder="5XXXXXXXX">
+                    <select id="country_code" name="country_code" aria-label="مفتاح الدولة">
+                      <option value="+966">+966</option>
+                      <option value="+20">+20</option>
+                      <option value="+971">+971</option>
+                      <option value="+974">+974</option>
+                      <option value="+965">+965</option>
+                      <option value="+968">+968</option>
+                      <option value="+973">+973</option>
+                      <option value="+962">+962</option>
+                      <option value="+964">+964</option>
+                      <option value="+218">+218</option>
+                      <option value="+249">+249</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="country">الدولة</label>
+                  <input id="country" name="country" list="countries" autocomplete="country-name" required placeholder="ابحث عن الدولة">
+                  <datalist id="countries">
+                    <option value="السعودية"><option value="مصر"><option value="الإمارات"><option value="قطر">
+                    <option value="الكويت"><option value="عُمان"><option value="البحرين"><option value="الأردن">
+                    <option value="العراق"><option value="ليبيا"><option value="السودان"><option value="أخرى">
+                  </datalist>
+                </div>
+                <div class="field full">
+                  <label for="job_description">المسمى الوظيفي / طبيعة العمل</label>
+                  <input id="job_description" name="job_description" autocomplete="organization-title" required placeholder="مثال: مهندس ميكانيكا - مكتب فني">
+                </div>
+                <div class="field hp" aria-hidden="true">
+                  <label for="company_website">الموقع الإلكتروني</label>
+                  <input id="company_website" name="company_website" tabindex="-1" autocomplete="off">
+                </div>
+                <label class="consent">
+                  <input type="checkbox" name="consent" required>
+                  <span>أوافق على تواصل فريق إنجوسوفت معي بخصوص المسار التدريبي.</span>
+                </label>
+                <div class="form-actions">
+                  <button class="btn btn-primary" type="submit">
+                    أرسل طلب التسجيل
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4 20-7Z"/></svg>
+                  </button>
+                  <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                  <a class="whatsapp-fallback" id="whatsapp-fallback" href="https://wa.me/966920016295?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%B1%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%20%D9%84%D9%84%D9%87%D9%86%D8%AF%D8%B3%D8%A9%20%D8%A7%D9%84%D9%85%D9%8A%D9%83%D8%A7%D9%86%D9%8A%D9%83%D9%8A%D8%A9" target="_blank" rel="noopener">تواصل مباشرة عبر واتساب</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <img src="assets/engosoft-logo.png" alt="إنجوسوفت" width="244" height="84" loading="lazy">
+      <p class="footer-copy">© 2026 إنجوسوفت. بيت المهندس الأول للتدريب الهندسي والمهني.</p>
+      <div class="footer-links">
+        <a href="https://engosoft.com/" target="_blank" rel="noopener">الموقع الرسمي</a>
+        <a href="https://wa.me/966920016295" target="_blank" rel="noopener">واتساب</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-cta" id="mobile-cta">
+    <a class="btn btn-primary" href="#register" data-event="sticky_mobile_cta">سجّل في المسار الميكانيكي</a>
+  </div>
+
+  <script>
+    (() => {
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const revealItems = document.querySelectorAll(".reveal");
+      if (reducedMotion || !("IntersectionObserver" in window)) {
+        revealItems.forEach((item) => item.classList.add("visible"));
+      } else {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: .12, rootMargin: "0px 0px -50px" });
+        revealItems.forEach((item) => revealObserver.observe(item));
+      }
+
+      window.dataLayer = window.dataLayer || [];
+      document.querySelectorAll("[data-event]").forEach((element) => {
+        element.addEventListener("click", () => {
+          window.dataLayer.push({
+            event: "mechanical_track_cta_click",
+            cta_location: element.dataset.event,
+            course_slug: "mechanical-professional-track"
+          });
+        });
+      });
+
+      const registerSection = document.getElementById("register");
+      const mobileCta = document.getElementById("mobile-cta");
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(([entry]) => {
+          mobileCta.classList.toggle("hidden", entry.isIntersecting);
+        }, { threshold: .12 }).observe(registerSection);
+      }
+
+      const form = document.getElementById("lead-form");
+      const status = document.getElementById("form-status");
+      const fallback = document.getElementById("whatsapp-fallback");
+      const submitButton = form.querySelector('button[type="submit"]');
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        status.className = "form-status";
+        status.textContent = "";
+        fallback.style.display = "none";
+
+        if (!form.reportValidity()) return;
+
+        const formData = new FormData(form);
+        const params = new URLSearchParams(window.location.search);
+        const payload = {
+          full_name: String(formData.get("full_name") || "").trim(),
+          phone: String(formData.get("phone") || "").trim(),
+          country_code: String(formData.get("country_code") || "").trim(),
+          country: String(formData.get("country") || "").trim(),
+          job_description: String(formData.get("job_description") || "").trim(),
+          consent: formData.get("consent") === "on",
+          company_website: String(formData.get("company_website") || ""),
+          course_name: "Mechanical Engineering Professional Track",
+          course_slug: "mechanical-professional-track",
+          lead_source: params.get("utm_source") || "landing_page",
+          page_url: window.location.href,
+          referrer: document.referrer,
+          utm_source: params.get("utm_source") || "",
+          utm_medium: params.get("utm_medium") || "",
+          utm_campaign: params.get("utm_campaign") || "",
+          utm_content: params.get("utm_content") || "",
+          utm_term: params.get("utm_term") || "",
+          created_at: new Date().toISOString()
+        };
+
+        submitButton.disabled = true;
+        submitButton.textContent = "جارٍ إرسال الطلب...";
+        window.dataLayer.push({ event: "mechanical_track_form_submit", course_slug: payload.course_slug });
+
+        try {
+          const response = await fetch("/api/leads", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.message || "تعذر إرسال الطلب.");
+
+          status.className = "form-status success";
+          status.textContent = "تم استلام طلبك، وسيتواصل معك فريق إنجوسوفت لمساعدتك في اختيار المستوى المناسب.";
+          window.dataLayer.push({ event: "mechanical_track_form_success", course_slug: payload.course_slug });
+          form.reset();
+        } catch (error) {
+          status.className = "form-status error";
+          status.textContent = "تعذر إرسال الطلب الآن. يمكنك التواصل معنا مباشرة عبر واتساب.";
+          fallback.style.display = "inline-block";
+          window.dataLayer.push({ event: "mechanical_track_form_error", course_slug: payload.course_slug });
+        } finally {
+          submitButton.disabled = false;
+          submitButton.innerHTML = 'أرسل طلب التسجيل <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7Z"></path></svg>';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
