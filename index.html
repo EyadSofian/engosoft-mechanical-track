@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#155197">
+  <meta name="theme-color" content="#071b2e">
   <meta name="color-scheme" content="light">
   <title>المسار الاحترافي للهندسة الميكانيكية | إنجوسوفت</title>
   <meta name="description" content="باقة من ٦ دورات: تصميم التكييف ومكافحة الحريق والتغذية والصرف والغازات الطبية، وأعمال المكتب الفني والتنفيذ بالموقع — من المبتدئ إلى المتقدم، مسجّلة أو حضورية.">
@@ -13,7 +13,9 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="المسار الاحترافي للهندسة الميكانيكية | إنجوسوفت">
   <meta property="og:description" content="٦ دورات في باقة واحدة: تكييف، مكافحة حريق، تغذية وصرف، غازات طبية، مكتب فني، وتنفيذ بالموقع.">
-  <meta property="og:image" content="https://engosoft-mechanical-track.vercel.app/assets/mechanical-hero-v3.webp">
+  <meta property="og:image" content="https://engosoft-mechanical-track.vercel.app/assets/plantroom-hero.webp">
+  <!-- the hero photograph is the largest paint on the page: fetch it with the stylesheet. -->
+  <link rel="preload" as="image" href="assets/plantroom-hero.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,6 +27,13 @@
       --brand-bright: #0655d6;
       --brand-050: #eef4fb;
       --brand-100: #dbe8f6;
+
+      /* the dark end of the identity: hero, register panel, footer */
+      --navy: #071b2e;
+      --navy-2: #0d2c48;
+      /* accent sampled from the orange badge on the official course banner */
+      --amber: #f08a1d;
+      --amber-dark: #d9760f;
 
       --ink: #0b2237;
       --ink-2: #1e293b;
@@ -43,6 +52,14 @@
       --draft: #d98014;
       --site: #4a6b8a;
       --gas: #0f8a6a;
+
+      /* lifted variants of the same six signals, for use on the dark hero */
+      --hvac-l: #5cc0ff;
+      --fire-l: #ff8074;
+      --plumb-l: #86b9ff;
+      --draft-l: #ffb454;
+      --site-l: #a8c6e0;
+      --gas-l: #43d3a4;
 
       --ok: #14875a;
       --err: #c62828;
@@ -96,10 +113,13 @@
       cursor: pointer;
       transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
     }
-    .btn-primary { color: #fff; background: var(--brand); box-shadow: 0 10px 24px rgba(21, 81, 151, .26); }
-    .btn-primary:hover { background: var(--brand-dark); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(21, 81, 151, .32); }
+    /* amber carries every call to action; brand blue stays the structural colour. */
+    .btn-primary { color: var(--navy); background: var(--amber); box-shadow: 0 10px 26px rgba(240, 138, 29, .3); }
+    .btn-primary:hover { background: var(--amber-dark); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(240, 138, 29, .38); }
     .btn-ghost { color: var(--brand); background: #fff; border-color: var(--line-2); }
     .btn-ghost:hover { border-color: var(--brand); background: var(--brand-050); transform: translateY(-2px); }
+    .btn-glass { color: #fff; background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .32); backdrop-filter: blur(8px); }
+    .btn-glass:hover { background: rgba(255, 255, 255, .18); border-color: rgba(255, 255, 255, .6); transform: translateY(-2px); }
     .btn[disabled] { opacity: .6; cursor: progress; transform: none; }
 
     .kicker {
@@ -113,99 +133,151 @@
     .kicker::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px rgba(21, 81, 151, .14); }
 
     /* ============ header ============ */
+    /* floats over the hero image, then hardens into a solid bar once scrolled past it. */
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
+      inset-inline: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, .9);
-      backdrop-filter: saturate(150%) blur(12px);
-      border-bottom: 1px solid var(--line);
+      padding: 15px 0;
+      transition: padding .3s var(--ease);
     }
     .head {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      min-height: 74px;
+      min-height: 64px;
+      padding: 8px 10px 8px 16px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 18px;
+      background: rgba(7, 27, 46, .46);
+      backdrop-filter: saturate(150%) blur(16px);
+      overflow: hidden;
+      transition: background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
     }
-    /* the logo is fixed brand property: never recoloured, never redrawn. */
-    .head img { width: auto; height: 38px; }
+    /* the logo is fixed brand property: never recoloured — so it keeps its own white plate. */
+    .logo-plate {
+      display: grid;
+      place-items: center;
+      min-height: 46px;
+      padding: 6px 13px;
+      border-radius: 13px;
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(7, 27, 46, .16);
+    }
+    .logo-plate img { width: auto; height: 30px; }
     .head-actions { display: flex; align-items: center; gap: 12px; }
-    .head-link { color: var(--muted); font-size: 14px; font-weight: 600; }
-    .head-link:hover { color: var(--brand); }
+    .head-link { color: rgba(255, 255, 255, .84); font-size: 14px; font-weight: 600; transition: color .2s var(--ease); }
+    .head-link:hover { color: #fff; }
     .head .btn { min-height: 44px; padding: 0 20px; font-size: 14px; }
-    .progress { position: absolute; bottom: -1px; inset-inline-start: 0; width: 100%; height: 2px; background: var(--brand-bright); transform: scaleX(0); transform-origin: right; }
+    .progress { position: absolute; bottom: 0; inset-inline-start: 0; width: 100%; height: 2px; background: var(--amber); transform: scaleX(0); transform-origin: right; }
+
+    header.solid { padding: 9px 0; }
+    header.solid .head { background: rgba(255, 255, 255, .93); border-color: var(--line); box-shadow: 0 14px 36px rgba(11, 34, 55, .13); }
+    header.solid .head-link { color: var(--muted); }
+    header.solid .head-link:hover { color: var(--brand); }
+    header.solid .logo-plate { box-shadow: none; }
 
     /* ============ hero ============ */
-    .hero { position: relative; padding: 56px 0 72px; background: linear-gradient(180deg, var(--brand-050), #fff 62%); overflow: hidden; }
+    .hero {
+      position: relative;
+      display: grid;
+      align-items: end;
+      min-height: min(94vh, 880px);
+      /* overrides the shared section padding: the strip has to sit flush on the bottom edge. */
+      padding: 112px 0 0;
+      overflow: hidden;
+      color: #fff;
+      background: var(--navy);
+    }
+    /* the photograph, darkened from the RTL start edge so the Arabic copy stays legible. */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background-image: linear-gradient(rgba(21, 81, 151, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(21, 81, 151, .05) 1px, transparent 1px);
-      background-size: 46px 46px;
-      mask-image: radial-gradient(120% 80% at 80% 0, #000, transparent 70%);
+      background:
+        linear-gradient(270deg, rgba(7, 27, 46, .95) 6%, rgba(7, 27, 46, .74) 48%, rgba(7, 27, 46, .38) 100%),
+        linear-gradient(180deg, rgba(7, 27, 46, .8), rgba(7, 27, 46, .06) 34%, rgba(7, 27, 46, .66)),
+        url("assets/plantroom-hero.webp") center / cover no-repeat;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(95% 72% at 88% 10%, #000, transparent 74%);
       pointer-events: none;
     }
-    .hero-grid { position: relative; display: grid; grid-template-columns: 1.02fr .98fr; gap: 52px; align-items: center; }
+    .hero-inner { position: relative; z-index: 2; }
+    .hero-copy { width: min(730px, 100%); padding-bottom: 26px; }
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 14px;
-      border: 1px solid var(--line-2);
+      padding: 8px 15px;
+      border: 1px solid rgba(255, 255, 255, .24);
       border-radius: 999px;
-      background: #fff;
-      color: var(--brand);
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(8px);
+      color: #fff;
       font-size: 13px;
       font-weight: 700;
-      box-shadow: var(--shadow-sm);
     }
-    .badge b { color: var(--draft); }
-    .hero h1 { margin: 18px 0 14px; font-size: clamp(29px, 4.4vw, 46px); }
-    .hero h1 span { color: var(--brand); }
-    .hero-lead { max-width: 52ch; color: var(--muted); font-size: 17px; }
-    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .hero-facts { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
-    .fact { display: flex; align-items: center; gap: 9px; color: var(--ink-2); font-size: 14px; font-weight: 600; }
-    .fact svg { flex: none; width: 19px; height: 19px; color: var(--brand); }
+    .badge b { color: var(--amber); }
+    .hero h1 { margin: 18px 0 14px; font-size: clamp(32px, 5.1vw, 55px); line-height: 1.32; }
+    .hero h1 span { color: #8ecbff; }
+    .hero-lead { max-width: 56ch; color: #d3e2ef; font-size: clamp(15.5px, 1.6vw, 17.5px); line-height: 1.72; }
+    .hero-lead b { color: #fff; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .hero-facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .fact {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 15px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .08);
+      backdrop-filter: blur(8px);
+      color: #eaf3fb;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+    .fact svg { flex: none; width: 18px; height: 18px; color: var(--amber); }
 
-    /* ---- hero visual + the mechanical readout ---- */
-    .hero-visual { position: relative; }
-    .hero-frame {
+    /* ---- the six courses, as a glass strip anchored to the foot of the image ---- */
+    .strip {
       position: relative;
-      border-radius: 22px;
-      overflow: hidden;
-      background: var(--brand-100);
-      box-shadow: var(--shadow-lg);
+      z-index: 2;
+      padding: 18px 20px 20px;
+      border: 1px solid rgba(255, 255, 255, .17);
+      border-bottom: 0;
+      border-radius: 20px 20px 0 0;
+      background: rgba(255, 255, 255, .07);
+      backdrop-filter: blur(18px);
     }
-    .hero-frame img { width: 100%; aspect-ratio: 4 / 3.85; object-fit: cover; object-position: center 42%; }
-
-    .panel {
-      position: absolute;
-      inset-inline-start: -30px;
-      bottom: -30px;
-      width: min(286px, 72%);
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, .97);
-      backdrop-filter: blur(6px);
-      box-shadow: var(--shadow);
+    .strip-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 14px; margin-bottom: 15px; border-bottom: 1px solid rgba(255, 255, 255, .15); }
+    .strip-head b { font-size: 14px; }
+    .strip-live { display: inline-flex; align-items: center; gap: 7px; color: #bcd3e6; font-size: 11.5px; font-weight: 600; }
+    .strip-live i { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px rgba(240, 138, 29, .22); }
+    /* one cell per discipline: icon, arabic name, the drawing-set code it maps to. */
+    .strip-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+    .chip {
+      display: grid;
+      gap: 5px;
+      padding: 13px 14px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 14px;
+      background: rgba(7, 27, 46, .36);
+      transition: transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
     }
-    .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-bottom: 11px; margin-bottom: 4px; border-bottom: 1px solid var(--line); }
-    .panel-head b { font-size: 13.5px; }
-    .panel-live { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 10.5px; font-weight: 600; }
-    .panel-live i { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px rgba(20, 135, 90, .16); }
-    /* one row per discipline: icon, arabic name, the drawing-set code it maps to. */
-    .gauge { display: grid; grid-template-columns: 18px 1fr auto; align-items: center; gap: 9px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
-    .gauge:last-of-type { border-bottom: 0; }
-    .gauge svg { width: 17px; height: 17px; color: var(--sig); }
-    .gauge > span { font-size: 12px; font-weight: 600; color: var(--ink-2); }
-    .gauge em { padding: 2px 8px; border-radius: 99px; background: color-mix(in srgb, var(--sig) 11%, #fff); color: var(--sig); font-size: 9.5px; font-style: normal; font-weight: 700; unicode-bidi: isolate; }
-    .panel-foot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); text-align: center; }
-    .panel-foot b { display: block; color: var(--brand); font-size: 16px; line-height: 1.5; }
-    .panel-foot span { font-size: 10.5px; color: var(--muted); }
+    .chip:hover { transform: translateY(-3px); background: rgba(7, 27, 46, .58); border-color: rgba(255, 255, 255, .3); }
+    .chip svg { width: 21px; height: 21px; color: var(--sig); }
+    .chip b { font-size: 13px; }
+    .chip em { color: #a4c0d8; font-size: 9.5px; font-style: normal; font-weight: 700; letter-spacing: .04em; unicode-bidi: isolate; }
 
     /* ============ sections ============ */
     section { padding: 78px 0; }
@@ -280,12 +352,22 @@
     /* ---- register ---- */
     .register { background: linear-gradient(180deg, #fff, var(--brand-050)); }
     .register-card { display: grid; grid-template-columns: .88fr 1.12fr; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: #fff; box-shadow: var(--shadow); }
-    .register-copy { position: relative; padding: 42px 36px; color: #fff; background: linear-gradient(160deg, var(--brand), #0d3c72); }
+    .register-copy { position: relative; padding: 42px 36px; color: #fff; background: linear-gradient(160deg, var(--navy-2), var(--navy)); }
+    /* the 3d systems model sits behind the panel, dimmed to a texture. */
     .register-copy::before {
       content: "";
       position: absolute;
       inset: 0;
-      background-image: linear-gradient(rgba(255, 255, 255, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .07) 1px, transparent 1px);
+      background:
+        linear-gradient(160deg, rgba(13, 44, 72, .93), rgba(7, 27, 46, .97)),
+        url("assets/mechanical-hero-v3.webp") center 30% / cover no-repeat;
+      pointer-events: none;
+    }
+    .register-copy::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, .06) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .06) 1px, transparent 1px);
       background-size: 34px 34px;
       pointer-events: none;
     }
@@ -335,11 +417,12 @@
     .whatsapp:hover { border-color: #14875a; background: #f1faf5; }
 
     /* ============ footer ============ */
-    footer { padding: 30px 0; border-top: 1px solid var(--line); background: #fff; }
+    footer { padding: 34px 0; background: var(--navy); }
     .footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
-    .footer img { width: auto; height: 32px; }
-    .footer-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; color: var(--muted); font-size: 13px; }
-    .footer-meta a:hover { color: var(--brand); }
+    .footer .logo-plate { min-height: 48px; padding: 7px 14px; }
+    .footer .logo-plate img { height: 32px; }
+    .footer-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; color: #9fb8cd; font-size: 13px; }
+    .footer-meta a:hover { color: #fff; }
 
     /* ============ sticky mobile cta ============ */
     .mobile-cta { position: fixed; inset-inline: 0; bottom: 0; z-index: 90; display: none; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: rgba(255, 255, 255, .95); backdrop-filter: blur(10px); border-top: 1px solid var(--line); transition: transform .3s var(--ease); }
@@ -352,22 +435,26 @@
 
     /* ============ responsive ============ */
     @media (max-width: 1000px) {
-      /* headline leads on narrow screens; the visual follows it, never precedes it. */
-      .hero-grid { grid-template-columns: 1fr; gap: 62px; }
-      .hero-visual { max-width: 560px; margin-inline: auto; }
-      .panel { inset-inline-start: auto; inset-inline-end: -14px; bottom: -30px; }
+      .hero { min-height: min(92vh, 780px); padding-top: 120px; }
+      .strip-grid { grid-template-columns: repeat(3, 1fr); }
       .cards { grid-template-columns: repeat(2, 1fr); }
       .why-grid { grid-template-columns: 1fr; gap: 32px; }
       .register-card { grid-template-columns: 1fr; }
     }
     @media (max-width: 620px) {
       section { padding: 58px 0; }
-      .hero { padding: 40px 0 56px; }
+      /* on a phone the copy sets the height; the image just fills behind it. */
+      .hero { min-height: 0; padding-top: 104px; }
+      .hero-copy { padding-bottom: 34px; }
+      .hero-facts { gap: 8px; }
+      .fact { padding: 7px 12px; font-size: 12.5px; }
       .head-link { display: none; }
       .head .btn { display: none; }
+      /* with the links gone the bar would be an empty slab, so it shrinks onto the logo. */
+      .head { width: fit-content; margin-inline: 17px auto; padding: 7px 9px; }
+      .strip { padding: 17px 15px 18px; }
+      .strip-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
       .cards { grid-template-columns: 1fr; }
-      .panel { position: static; width: 100%; margin-top: 16px; }
-      .hero-visual { max-width: none; }
       .form-grid { grid-template-columns: 1fr; }
       .register-copy, .form-wrap { padding: 30px 22px; }
       .mobile-cta { display: block; }
@@ -384,7 +471,7 @@
 
   <header>
     <div class="container head">
-      <a href="https://engosoft.com/" target="_blank" rel="noopener" aria-label="إنجوسوفت">
+      <a class="logo-plate" href="https://engosoft.com/" target="_blank" rel="noopener" aria-label="إنجوسوفت">
         <img src="assets/engosoft-logo.png" alt="إنجوسوفت" width="244" height="84">
       </a>
       <div class="head-actions">
@@ -399,8 +486,8 @@
   <main id="main">
     <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
           <span class="badge" data-reveal><b>★</b> باقة متكاملة — ٦ دورات في مسار واحد</span>
           <h1 data-reveal style="--d:70ms">المسار الاحترافي<br><span>للهندسة الميكانيكية</span></h1>
           <p class="hero-lead" data-reveal style="--d:140ms">
@@ -410,7 +497,7 @@
           </p>
           <div class="hero-cta" data-reveal style="--d:210ms">
             <a class="btn btn-primary" href="#register">اطلب تفاصيل المسار</a>
-            <a class="btn btn-ghost" href="#why-track">تعرّف على المحتوى</a>
+            <a class="btn btn-glass" href="#why-track">تعرّف على المحتوى</a>
           </div>
           <div class="hero-facts" data-reveal style="--d:280ms">
             <span class="fact">
@@ -432,54 +519,45 @@
           </div>
         </div>
 
-        <div class="hero-visual" data-reveal style="--d:120ms">
-          <div class="hero-frame">
-            <img src="assets/mechanical-hero-v3.webp" alt="نموذج ثلاثي الأبعاد لأنظمة التكييف ومكافحة الحريق والتغذية والصرف داخل مبنى" width="960" height="1200" fetchpriority="high">
+        <!-- readout of the six courses the package actually contains -->
+        <aside class="strip" id="panel" aria-label="محتويات الباقة" data-reveal style="--d:340ms">
+          <div class="strip-head">
+            <b>محتويات الباقة</b>
+            <span class="strip-live"><i></i> ٦ دورات و٣ برامج</span>
           </div>
-
-          <!-- readout of the six courses the package actually contains -->
-          <aside class="panel" id="panel" aria-label="محتويات الباقة">
-            <div class="panel-head">
-              <b>محتويات الباقة</b>
-              <span class="panel-live"><i></i> ٦ دورات</span>
-            </div>
-            <div class="gauge" style="--sig:var(--hvac)">
+          <div class="strip-grid">
+            <div class="chip" style="--sig:var(--hvac-l)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="9" rx="2"/><path d="M6 14v3M12 14v4M18 14v3"/><path d="M6 9h12"/></svg>
-              <span>تكييف وتهوية</span>
+              <b>تكييف وتهوية</b>
               <em>HVAC</em>
             </div>
-            <div class="gauge" style="--sig:var(--fire)">
+            <div class="chip" style="--sig:var(--fire-l)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5 4.2 5 9a5 5 0 0 1-10 0c0-2 1-3.4 2-4.5.4 1.6 1.3 2.2 2 2.2 1 0 1.6-1 1-3-.2-1.6-2-3.7-2-3.7Z"/><path d="M4 20h16"/></svg>
-              <span>مكافحة الحريق</span>
-              <em>FIRE</em>
+              <b>مكافحة الحريق</b>
+              <em>FIRE FIGHTING</em>
             </div>
-            <div class="gauge" style="--sig:var(--plumb)">
+            <div class="chip" style="--sig:var(--plumb-l)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14h6M16 14h6"/><path d="m8 10 4 4-4 4V10ZM16 10l-4 4 4 4V10Z"/><path d="M12 14V6"/><circle cx="12" cy="4" r="2"/></svg>
-              <span>تغذية وصرف</span>
+              <b>تغذية وصرف</b>
               <em>PLUMBING</em>
             </div>
-            <div class="gauge" style="--sig:var(--draft)">
+            <div class="chip" style="--sig:var(--draft-l)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M2.5 8h19"/><path d="m6 15 3-4 2.5 3 2-2.5"/></svg>
-              <span>المكتب الفني</span>
-              <em>SHOP DWG</em>
+              <b>المكتب الفني</b>
+              <em>SHOP DRAWING</em>
             </div>
-            <div class="gauge" style="--sig:var(--site)">
+            <div class="chip" style="--sig:var(--site-l)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9.5 21v-5h5v5"/><path d="M9.5 11.5h5"/></svg>
-              <span>التنفيذ بالموقع</span>
-              <em>SITE</em>
+              <b>التنفيذ بالموقع</b>
+              <em>MECHANICAL SITE</em>
             </div>
-            <div class="gauge" style="--sig:var(--gas)">
+            <div class="chip" style="--sig:var(--gas-l)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v3H9zM9.5 6v3.5a4.5 4.5 0 0 0-2 3.7V19a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-5.8a4.5 4.5 0 0 0-2-3.7V6"/><path d="M10 15h4"/></svg>
-              <span>الغازات الطبية</span>
-              <em>MED GAS</em>
+              <b>الغازات الطبية</b>
+              <em>MEDICAL GAS</em>
             </div>
-            <div class="panel-foot">
-              <div><b>٦</b><span>دورات</span></div>
-              <div><b>٣</b><span>برامج</span></div>
-              <div><b>✓</b><span>شهادة إتمام</span></div>
-            </div>
-          </aside>
-        </div>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -698,7 +776,7 @@
 
   <footer>
     <div class="container footer">
-      <a href="https://engosoft.com/" target="_blank" rel="noopener" aria-label="إنجوسوفت">
+      <a class="logo-plate" href="https://engosoft.com/" target="_blank" rel="noopener" aria-label="إنجوسوفت">
         <img src="assets/engosoft-logo.png" alt="إنجوسوفت" width="244" height="84" loading="lazy">
       </a>
       <div class="footer-meta">
@@ -729,13 +807,15 @@
         targets.forEach((el) => io.observe(el));
       }
 
-      /* ---- header scroll progress ---- */
+      /* ---- header scroll progress, and the swap from glass to solid ---- */
       const progress = document.getElementById("progress");
+      const header = document.querySelector("header");
       const root = document.documentElement;
       let ticking = false;
       const paint = () => {
         const max = root.scrollHeight - root.clientHeight;
         progress.style.transform = `scaleX(${max > 0 ? Math.min(1, Math.max(0, root.scrollTop / max)) : 0})`;
+        header.classList.toggle("solid", root.scrollTop > 40);
         ticking = false;
       };
       addEventListener("scroll", () => {
