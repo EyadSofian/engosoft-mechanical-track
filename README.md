@@ -1,10 +1,43 @@
-# Mechanical Engineering Professional Track
+# المسار الاحترافي للهندسة الميكانيكية — Landing Page
 
-Static Arabic RTL landing page for Engosoft.
+صفحة هبوط ثابتة (Static, Arabic RTL) لمسار الهندسة الميكانيكية من إنجوسوفت.
 
-## Vercel environment variables
+## البنية
 
-- `LEADS_WEBHOOK_URL`: required destination for registration leads.
-- `LEADS_WEBHOOK_TOKEN`: optional bearer token sent to the webhook.
+| الملف | الوصف |
+| --- | --- |
+| `index.html` | الصفحة كاملة (HTML + CSS + JS في ملف واحد، بدون أي build step) |
+| `api/leads.js` | Serverless function تستقبل بيانات النموذج وتمرّرها إلى الـ webhook |
+| `assets/engosoft-logo.png` | شعار إنجوسوفت الرسمي — **لا يُعدّل ولا يُعاد تلوينه** |
+| `assets/mechanical-hero-v3.webp` | صورة الهيرو (نموذج ثلاثي الأبعاد لأنظمة MEP) |
+| `assets/mechanical-course-official.webp` | صورة المسار الرسمية من موقع إنجوسوفت |
 
-The form never shows a fake success state. If the webhook is not configured or rejects the request, the page offers WhatsApp as a fallback.
+## أقسام الصفحة
+
+1. **الهيرو** — العنوان والصورة، ولوحة (dashboard) بسيطة تعرض أنظمة المسار الأربعة.
+2. **لماذا تختار هذا المسار؟** — التكييف، مكافحة الحريق، التغذية والصرف، المكتب الفني + البرامج.
+3. **لماذا إنجوسوفت؟** — أربعة أسباب + صورة المسار الرسمية.
+4. **نموذج التسجيل** — الاسم، الجوال، الدولة، المسمى الوظيفي، الموافقة على التواصل.
+
+## الهوية البصرية
+
+مأخوذة من `engosoft.com` مباشرة:
+
+- اللون الأساسي: `#155197` — والثانوي: `#0655D6`
+- الخط: `Noto Kufi Arabic`
+- خلفية فاتحة، نصوص `#0B2237`
+
+## متغيرات البيئة على Vercel
+
+- `LEADS_WEBHOOK_URL` — **مطلوب**: وجهة استقبال بيانات المسجّلين.
+- `LEADS_WEBHOOK_TOKEN` — اختياري: Bearer token يُرسل مع الطلب.
+
+النموذج لا يُظهر رسالة نجاح وهمية أبدًا. إذا لم يكن الـ webhook مضبوطًا أو رفض الطلب، تظهر للمستخدم رسالة خطأ صريحة مع زر تواصل عبر واتساب كبديل.
+
+## التشغيل محليًا
+
+```bash
+python3 -m http.server 4173
+```
+
+ثم افتح `http://localhost:4173`. مسار `/api/leads` يعمل على Vercel فقط، ومحليًا سيظهر مسار واتساب البديل.

@@ -3,591 +3,514 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#04121f">
-  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#155197">
+  <meta name="color-scheme" content="light">
   <title>المسار الاحترافي للهندسة الميكانيكية | إنجوسوفت</title>
-  <meta name="description" content="مسار تدريبي من مستويين في التكييف ومكافحة الحريق والتغذية والصرف وأعمال المكتب الفني من إنجوسوفت.">
+  <meta name="description" content="مسار تدريبي عملي في تصميم أنظمة التكييف ومكافحة الحريق والتغذية والصرف وأعمال المكتب الفني، مع إتقان AutoCAD وHAP وإعداد المخططات التنفيذية.">
   <link rel="canonical" href="https://engosoft-mechanical-track.vercel.app/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2304121f'/%3E%3Cg fill='none' stroke='%2338e1ff' stroke-width='1.8'%3E%3Ccircle cx='16' cy='16' r='8'/%3E%3Ccircle cx='16' cy='16' r='2'/%3E%3Cpath d='M16 8c3.4 0 4.9 2.3 4.1 4.5-.6 1.6-2.3 2.2-4.1 4M24 16c0 3.4-2.3 4.9-4.5 4.1-1.6-.6-2.2-2.3-4-4.1M16 24c-3.4 0-4.9-2.3-4.1-4.5.6-1.6 2.3-2.2 4.1-4M8 16c0-3.4 2.3-4.9 4.5-4.1 1.6.6 2.2 2.3 4 4.1'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="icon" href="assets/engosoft-logo.png">
   <meta property="og:locale" content="ar_SA">
   <meta property="og:type" content="website">
   <meta property="og:title" content="المسار الاحترافي للهندسة الميكانيكية | إنجوسوفت">
-  <meta property="og:description" content="ابدأ بالمستوى التأسيسي، ثم انتقل إلى التطبيقات الاحترافية في تخصصات الهندسة الميكانيكية.">
+  <meta property="og:description" content="من حساب الأحمال حتى المخططات التنفيذية: تكييف، مكافحة حريق، تغذية وصرف، ومكتب فني.">
   <meta property="og:image" content="https://engosoft-mechanical-track.vercel.app/assets/mechanical-hero-v3.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* ---- base: engosoft navy pushed to a blueprint depth ---- */
-      --void: #04121f;
-      --navy-900: #061d2f;
-      --navy-800: #0a2540;
-      --navy-700: #0d2f4f;
-      --navy-600: #14405f;
+      /* ---- engosoft brand, sampled from engosoft.com ---- */
+      --brand: #155197;
+      --brand-dark: #0f3f78;
+      --brand-bright: #0655d6;
+      --brand-050: #eef4fb;
+      --brand-100: #dbe8f6;
 
-      /* ---- brand blue, saturated back up ---- */
-      --blue: #0b8fe0;
-      --blue-deep: #0579b8;
-      --cyan: #38e1ff;
-      --cyan-soft: #7fe6ff;
+      --ink: #0b2237;
+      --ink-2: #1e293b;
+      --muted: #64748b;
+      --muted-2: #8296ab;
 
-      /* ---- discipline signal colours (real MEP drawing conventions) ---- */
-      --hvac: #38e1ff;
-      --fire: #ff5f47;
-      --plumb: #4d94ff;
-      --draft: #ffb62e;
+      --bg: #ffffff;
+      --surface: #f4f8fc;
+      --surface-2: #f0f4f8;
+      --line: #dfe8f2;
+      --line-2: #cddcec;
 
-      --text: #eef7fd;
-      --text-2: #a9c7db;
-      --text-3: #7495ac;
+      --hvac: #1f8fd6;
+      --fire: #c62828;
+      --plumb: #155197;
+      --draft: #d98014;
 
-      --line: rgba(86, 199, 247, .16);
-      --line-2: rgba(86, 199, 247, .32);
-      --grid: rgba(86, 199, 247, .07);
-      --grid-fine: rgba(86, 199, 247, .035);
+      --ok: #14875a;
+      --err: #c62828;
 
-      --ok: #26d99a;
-      --err: #ff6b5b;
-
-      --container: 1180px;
-      --r: 14px;
+      --container: 1120px;
+      --r: 16px;
       --ease: cubic-bezier(.22, 1, .36, 1);
-      --shadow: 0 30px 80px rgba(0, 0, 0, .45);
-      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --shadow-sm: 0 2px 10px rgba(11, 34, 55, .05);
+      --shadow: 0 18px 46px rgba(11, 34, 55, .10);
+      --shadow-lg: 0 30px 70px rgba(11, 34, 55, .14);
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
     body {
       margin: 0;
-      color: var(--text);
-      background: var(--void);
+      color: var(--ink);
+      background: var(--bg);
       font-family: "Noto Kufi Arabic", Tahoma, Arial, sans-serif;
-      line-height: 1.75;
-      font-kerning: normal;
+      font-size: 16px;
+      line-height: 1.8;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
-    img { display: block; max-width: 100%; }
+    /* height:auto lets aspect-ratio win over the intrinsic width/height attributes. */
+    img { display: block; max-width: 100%; height: auto; }
     a { color: inherit; text-decoration: none; }
     button, input, select { font: inherit; }
     button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
-    :focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
-    .container { width: min(calc(100% - 36px), var(--container)); margin-inline: auto; }
-    .ltr { direction: ltr; unicode-bidi: isolate; font-family: var(--mono); font-weight: 600; }
-    .skip-link { position: fixed; top: 8px; right: 8px; z-index: 200; padding: 10px 14px; color: var(--void); background: var(--cyan); border-radius: 8px; font-weight: 800; transform: translateY(-180%); }
+    :focus-visible { outline: 3px solid var(--brand-bright); outline-offset: 3px; border-radius: 6px; }
+    h1, h2, h3 { line-height: 1.45; margin: 0; font-weight: 800; letter-spacing: 0; }
+    p { margin: 0; }
+    .container { width: min(calc(100% - 34px), var(--container)); margin-inline: auto; }
+    /* Latin technical terms keep LTR order inside Arabic sentences. */
+    .ltr { direction: ltr; unicode-bidi: isolate; font-weight: 700; }
+    .skip-link { position: fixed; top: 8px; inset-inline-start: 8px; z-index: 200; padding: 10px 14px; color: #fff; background: var(--brand); border-radius: 8px; font-weight: 700; transform: translateY(-200%); }
     .skip-link:focus { transform: none; }
 
-    /* ============ blueprint surfaces ============ */
-    .bp { position: relative; isolation: isolate; }
-    .bp::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background-image:
-        linear-gradient(var(--grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
-        linear-gradient(var(--grid-fine) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-fine) 1px, transparent 1px);
-      background-size: 88px 88px, 88px 88px, 22px 22px, 22px 22px;
-      pointer-events: none;
+    /* ============ buttons ============ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 52px;
+      padding: 0 26px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
     }
-    .tech-corners::before, .tech-corners::after {
-      content: "";
-      position: absolute;
-      z-index: 3;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--cyan);
-      opacity: .7;
-      pointer-events: none;
-    }
-    .tech-corners::before { top: 12px; inset-inline-start: 12px; border-inline-end: 0; border-bottom: 0; }
-    .tech-corners::after { bottom: 12px; inset-inline-end: 12px; border-inline-start: 0; border-top: 0; }
+    .btn-primary { color: #fff; background: var(--brand); box-shadow: 0 10px 24px rgba(21, 81, 151, .26); }
+    .btn-primary:hover { background: var(--brand-dark); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(21, 81, 151, .32); }
+    .btn-ghost { color: var(--brand); background: #fff; border-color: var(--line-2); }
+    .btn-ghost:hover { border-color: var(--brand); background: var(--brand-050); transform: translateY(-2px); }
+    .btn[disabled] { opacity: .6; cursor: progress; transform: none; }
 
-    /* Arabic is a connected script: no letter-spacing, no uppercase. */
-    .tag {
+    .kicker {
       display: inline-flex;
       align-items: center;
       gap: 9px;
+      color: var(--brand);
       font-size: 13px;
       font-weight: 700;
     }
-    .tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 20%, transparent); }
+    .kicker::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px rgba(21, 81, 151, .14); }
 
     /* ============ header ============ */
     header {
       position: sticky;
       top: 0;
-      z-index: 90;
-      background: rgba(4, 18, 31, .82);
+      z-index: 100;
+      background: rgba(255, 255, 255, .9);
+      backdrop-filter: saturate(150%) blur(12px);
       border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(20px) saturate(140%);
     }
-    .nav { min-height: 74px; display: flex; align-items: center; gap: 16px; padding: 12px 0; }
-    .nav-brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
-    .logo-plate {
-      display: grid;
-      place-items: center;
-      width: 118px;
-      height: 46px;
-      flex: 0 0 118px;
-      padding: 6px 10px;
-      border-radius: 10px;
-      background: #fff;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
-    }
-    .logo-plate img { width: auto; height: 28px; max-width: 100%; object-fit: contain; }
-    .nav-copy { display: grid; gap: 0; line-height: 1.4; }
-    .nav-copy strong { font-size: 13px; color: var(--text); }
-    .nav-copy small { font-size: 10px; font-weight: 600; color: var(--text-3); }
-    .nav-context {
-      display: inline-flex;
+    .head {
+      display: flex;
       align-items: center;
-      gap: 9px;
-      margin-inline: auto;
-      padding: 8px 14px;
-      border: 1px solid var(--line-2);
-      border-radius: 999px;
-      color: var(--cyan);
-      background: rgba(56, 225, 255, .07);
-      font-size: 11px;
-      font-weight: 800;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 74px;
     }
-    .nav-context::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); animation: pulse 2.4s ease-in-out infinite; }
-    @keyframes pulse { 50% { opacity: .35; } }
-    .progress { position: absolute; inset-inline: 0; bottom: -1px; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--blue)); transform: scaleX(0); transform-origin: right; }
+    /* the logo is fixed brand property: never recoloured, never redrawn. */
+    .head img { width: auto; height: 38px; }
+    .head-actions { display: flex; align-items: center; gap: 12px; }
+    .head-link { color: var(--muted); font-size: 14px; font-weight: 600; }
+    .head-link:hover { color: var(--brand); }
+    .head .btn { min-height: 44px; padding: 0 20px; font-size: 14px; }
+    .progress { position: absolute; bottom: -1px; inset-inline-start: 0; width: 100%; height: 2px; background: var(--brand-bright); transform: scaleX(0); transform-origin: right; }
 
-    /* ============ buttons ============ */
-    .btn {
-      position: relative;
-      min-height: 52px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px 24px;
-      border: 1px solid transparent;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 800;
-      font-size: 15px;
-      line-height: 1.4;
-      overflow: hidden;
-      transition: transform .22s var(--ease), box-shadow .22s var(--ease), background-color .22s var(--ease), border-color .22s var(--ease);
-    }
-    .btn::after {
+    /* ============ hero ============ */
+    .hero { position: relative; padding: 56px 0 72px; background: linear-gradient(180deg, var(--brand-050), #fff 62%); overflow: hidden; }
+    .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(115deg, transparent 36%, rgba(255, 255, 255, .45) 50%, transparent 64%);
-      transform: translateX(-130%);
-      transition: transform .75s var(--ease);
+      background-image: linear-gradient(rgba(21, 81, 151, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(21, 81, 151, .05) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(120% 80% at 80% 0, #000, transparent 70%);
       pointer-events: none;
     }
-    .btn:hover::after { transform: translateX(130%); }
-    .btn:hover { transform: translateY(-2px); }
-    .btn:active { transform: translateY(0) scale(.985); }
-    .btn svg { width: 19px; height: 19px; flex: 0 0 auto; }
-    .btn-primary { color: var(--void); background: linear-gradient(135deg, var(--cyan-soft), #1fcdf2); box-shadow: 0 14px 34px rgba(56, 225, 255, .26); }
-    .btn-primary:hover { box-shadow: 0 20px 44px rgba(56, 225, 255, .38); }
-    .btn-ghost { color: var(--text); border-color: var(--line-2); background: rgba(255, 255, 255, .04); }
-    .btn-ghost:hover { border-color: var(--cyan); background: rgba(56, 225, 255, .09); }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.02fr .98fr; gap: 52px; align-items: center; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border: 1px solid var(--line-2);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+    }
+    .badge b { color: var(--draft); }
+    .hero h1 { margin: 18px 0 14px; font-size: clamp(29px, 4.4vw, 46px); }
+    .hero h1 span { color: var(--brand); }
+    .hero-lead { max-width: 52ch; color: var(--muted); font-size: 17px; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-facts { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .fact { display: flex; align-items: center; gap: 9px; color: var(--ink-2); font-size: 14px; font-weight: 600; }
+    .fact svg { flex: none; width: 19px; height: 19px; color: var(--brand); }
 
-    /* ============ hero ============ */
-    .hero { position: relative; padding: 46px 0 76px; overflow: hidden; background: radial-gradient(120% 90% at 78% 8%, #0c3050 0%, var(--void) 62%); }
-    .hero-glow { position: absolute; z-index: 0; top: -18%; inset-inline-start: -12%; width: 780px; height: 780px; border-radius: 50%; background: radial-gradient(circle, rgba(11, 143, 224, .3), transparent 62%); filter: blur(30px); pointer-events: none; }
-    .impeller { position: absolute; z-index: 0; top: -180px; inset-inline-end: -220px; width: 660px; height: 660px; color: var(--cyan); opacity: .1; pointer-events: none; animation: spin 90s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.04fr .96fr; align-items: center; gap: 52px; }
-    .eyebrow { margin: 0 0 16px; color: var(--cyan); }
-    h1 { margin: 0; font-size: clamp(32px, 4.1vw, 53px); font-weight: 800; line-height: 1.34; letter-spacing: -.01em; }
-    h1 em { font-style: normal; color: var(--cyan); text-shadow: 0 0 40px rgba(56, 225, 255, .35); }
-    .hero-lede { max-width: 560px; margin: 20px 0 0; color: var(--text-2); font-size: 16px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-    .hero-specs { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 30px; padding-top: 24px; border-top: 1px dashed var(--line-2); }
-    .spec { display: grid; gap: 2px; }
-    .spec b { font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--cyan); line-height: 1.2; }
-    .spec span { font-size: 12px; font-weight: 600; color: var(--text-3); }
-
-    .hero-frame { position: relative; padding: 14px; border: 1px solid var(--line-2); border-radius: 20px; background: linear-gradient(150deg, rgba(20, 64, 95, .5), rgba(6, 29, 47, .8)); box-shadow: var(--shadow); }
-    .hero-media { position: relative; border-radius: 12px; overflow: hidden; }
-    .hero-media img { width: 100%; aspect-ratio: 4 / 5; max-height: 580px; object-fit: cover; }
-    .scan { position: absolute; z-index: 2; inset-inline: 0; top: 0; height: 24%; background: linear-gradient(180deg, transparent, rgba(56, 225, 255, .22), transparent); animation: scan 8s var(--ease) infinite; pointer-events: none; }
-    @keyframes scan { 0% { transform: translateY(-120%); } 55%, 100% { transform: translateY(430%); } }
-
-    .pin { position: absolute; z-index: 4; display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border: 1px solid var(--line-2); border-radius: 999px; background: rgba(4, 18, 31, .82); backdrop-filter: blur(10px); font-family: var(--mono); font-size: 11px; font-weight: 600; white-space: nowrap; }
-    .pin i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; }
-    .pin-1 { top: 12%; inset-inline-start: -22px; color: var(--hvac); }
-    .pin-2 { top: 47%; inset-inline-end: -18px; color: var(--fire); }
-    .pin-3 { bottom: 14%; inset-inline-start: -14px; color: var(--plumb); }
-
-    /* ============ ticker ============ */
-    .ticker { position: relative; padding: 16px 0; border-block: 1px solid var(--line); background: var(--navy-900); overflow: hidden; }
-    .ticker::before, .ticker::after { content: ""; position: absolute; z-index: 2; top: 0; width: 110px; height: 100%; pointer-events: none; }
-    .ticker::before { inset-inline-start: 0; background: linear-gradient(to right, var(--navy-900), transparent); }
-    .ticker::after { inset-inline-end: 0; background: linear-gradient(to left, var(--navy-900), transparent); }
-    .ticker-track { display: flex; width: max-content; direction: ltr; animation: slide 42s linear infinite; }
-    .ticker:hover .ticker-track { animation-play-state: paused; }
-    @keyframes slide { to { transform: translateX(-50%); } }
-    .ticker-track span { display: inline-flex; align-items: center; gap: 26px; padding-inline: 13px; color: var(--text-3); font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .1em; white-space: nowrap; }
-    .ticker-track span::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); opacity: .5; }
-
-    /* ============ sections ============ */
-    section { position: relative; padding: 92px 0; }
-    .section-head { max-width: 760px; margin-bottom: 44px; }
-    .kicker { margin: 0 0 14px; color: var(--cyan); }
-    h2 { margin: 0; font-size: clamp(27px, 3.5vw, 42px); font-weight: 800; line-height: 1.42; letter-spacing: -.01em; }
-    .section-head > p:last-child { margin: 14px 0 0; color: var(--text-2); }
-
-    /* ---- systems ---- */
-    .systems { background: var(--navy-900); border-block: 1px solid var(--line); }
-    .sys-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .sys-grid > :nth-child(2) { --d: 80ms; }
-    .sys-grid > :nth-child(3) { --d: 160ms; }
-    .sys-grid > :nth-child(4) { --d: 240ms; }
-    .lv-2 { --d: 120ms; }
-    .sys {
+    /* ---- hero visual + the mechanical readout ---- */
+    .hero-visual { position: relative; }
+    .hero-frame {
       position: relative;
-      padding: 26px 22px 28px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--brand-100);
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-frame img { width: 100%; aspect-ratio: 4 / 3.35; object-fit: cover; object-position: center 42%; }
+
+    .panel {
+      position: absolute;
+      inset-inline-start: -30px;
+      bottom: -30px;
+      width: min(286px, 72%);
+      padding: 16px;
       border: 1px solid var(--line);
       border-radius: 16px;
-      background: linear-gradient(170deg, rgba(20, 64, 95, .34), rgba(6, 29, 47, .5));
-      overflow: hidden;
-      transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+      background: rgba(255, 255, 255, .97);
+      backdrop-filter: blur(6px);
+      box-shadow: var(--shadow);
     }
-    .sys::before { content: ""; position: absolute; inset-inline: 0; top: 0; height: 3px; background: var(--sig); transform: scaleX(0); transform-origin: right; transition: transform .4s var(--ease); }
-    .sys:hover { transform: translateY(-6px); border-color: color-mix(in srgb, var(--sig) 55%, transparent); box-shadow: 0 22px 46px rgba(0, 0, 0, .4), 0 0 0 1px color-mix(in srgb, var(--sig) 22%, transparent); }
-    .sys:hover::before { transform: scaleX(1); }
-    /* dash values are measured in JS (getTotalLength) — pathLength normalisation
-       is not honoured consistently on <rect>/<circle>. */
-    .sys-icon { width: 54px; height: 54px; color: var(--sig); }
-    .sys-icon.draw > * { transition: stroke-dashoffset .9s var(--ease); }
-    .sys-code { display: block; margin-top: 20px; color: var(--sig); font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .1em; }
-    .sys h3 { margin: 8px 0 8px; font-size: 18px; font-weight: 700; line-height: 1.6; }
-    .sys p { margin: 0; color: var(--text-2); font-size: 14px; }
+    .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-bottom: 11px; margin-bottom: 4px; border-bottom: 1px solid var(--line); }
+    .panel-head b { font-size: 13.5px; }
+    .panel-live { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 10.5px; font-weight: 600; }
+    .panel-live i { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px rgba(20, 135, 90, .16); }
+    /* one row per discipline: icon, arabic name, the drawing-set code it maps to. */
+    .gauge { display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 9px; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+    .gauge:last-of-type { border-bottom: 0; }
+    .gauge svg { width: 19px; height: 19px; color: var(--sig); }
+    .gauge > span { font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+    .gauge em { padding: 2px 8px; border-radius: 99px; background: color-mix(in srgb, var(--sig) 11%, #fff); color: var(--sig); font-size: 9.5px; font-style: normal; font-weight: 700; unicode-bidi: isolate; }
+    .panel-foot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); text-align: center; }
+    .panel-foot b { display: block; color: var(--brand); font-size: 16px; line-height: 1.5; }
+    .panel-foot span { font-size: 10.5px; color: var(--muted); }
 
-    /* ---- levels ---- */
-    .levels { background: var(--void); }
-    .lv-grid { position: relative; display: grid; grid-template-columns: 1fr auto 1fr; align-items: stretch; gap: 0; }
-    .lv {
+    /* ============ sections ============ */
+    section { padding: 78px 0; }
+    .section-head { max-width: 62ch; margin-bottom: 40px; }
+    .section-head h2 { margin-top: 12px; font-size: clamp(23px, 3.1vw, 33px); }
+    .section-head p { margin-top: 12px; color: var(--muted); }
+
+    .alt { background: var(--surface); border-block: 1px solid var(--line); }
+
+    /* ---- why this track ---- */
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .card {
       position: relative;
-      padding: 34px 30px 32px;
+      padding: 26px 22px;
       border: 1px solid var(--line);
-      border-radius: 20px;
-      background: linear-gradient(160deg, rgba(20, 64, 95, .3), rgba(6, 29, 47, .62));
-      transition: transform .3s var(--ease), border-color .3s var(--ease);
+      border-radius: var(--r);
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s var(--ease);
     }
-    .lv:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--sig) 50%, transparent); }
-    .lv-no { display: block; font-family: var(--mono); font-size: 46px; font-weight: 700; line-height: 1; color: var(--sig); opacity: .95; }
-    .lv h3 { margin: 14px 0 10px; font-size: 22px; font-weight: 800; }
-    .lv p { margin: 0 0 20px; color: var(--text-2); font-size: 15px; }
-    .lv-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .lv-tags span { padding: 6px 12px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--text-2); font-size: 12px; font-weight: 600; }
-    .lv-pipe { display: grid; place-items: center; width: 96px; color: var(--line-2); }
-    .lv-pipe svg { width: 100%; height: 46px; }
-    .lv-pipe .flow { stroke-dasharray: 7 11; animation: flow 1.9s linear infinite; }
-    @keyframes flow { to { stroke-dashoffset: 36; } }
+    .card:hover { transform: translateY(-4px); border-color: var(--line-2); box-shadow: var(--shadow); }
+    .card::after { content: ""; position: absolute; top: 0; inset-inline: 22px; height: 3px; border-radius: 0 0 3px 3px; background: var(--sig); }
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--sig) 10%, #fff);
+      color: var(--sig);
+    }
+    .card-icon svg { width: 25px; height: 25px; }
+    .card h3 { font-size: 16.5px; }
+    .card p { margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+    /* latin runs stay LTR inside the RTL card, but still hug the RTL start edge. */
+    .card-code { display: block; margin-bottom: 6px; color: var(--muted-2); font-size: 10.5px; font-weight: 700; unicode-bidi: isolate; }
 
-    .tools { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 40px; padding-top: 30px; border-top: 1px dashed var(--line-2); }
-    .tools > b { color: var(--text-3); font-size: 12px; font-weight: 700; }
-    .tool { display: inline-flex; align-items: center; gap: 9px; padding: 9px 16px; border: 1px solid var(--line-2); border-radius: 10px; background: rgba(56, 225, 255, .05); color: var(--text); font-family: var(--mono); font-size: 13px; font-weight: 600; transition: border-color .25s var(--ease), background-color .25s var(--ease); }
-    .tool:hover { border-color: var(--cyan); background: rgba(56, 225, 255, .12); }
-    .tool::before { content: ""; width: 6px; height: 6px; border-radius: 1px; background: var(--cyan); transform: rotate(45deg); }
+    .tools { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 26px; padding: 16px 20px; border: 1px dashed var(--line-2); border-radius: var(--r); background: #fff; }
+    .tools b { margin-inline-end: 6px; font-size: 14px; }
+    .tool { padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--brand-050); color: var(--brand); font-size: 13px; font-weight: 700; direction: ltr; }
 
     /* ---- why engosoft ---- */
-    .why { background: var(--navy-900); border-block: 1px solid var(--line); }
-    .why-grid { display: grid; grid-template-columns: .88fr 1.12fr; gap: 56px; align-items: center; }
-    .badge-plate { display: inline-flex; align-items: center; gap: 12px; margin-top: 26px; padding: 16px 20px; border: 1px solid var(--line-2); border-radius: 14px; background: rgba(56, 225, 255, .06); }
-    .badge-plate b { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--cyan); line-height: 1; }
-    .badge-plate span { color: var(--text-2); font-size: 14px; }
+    .why-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 46px; align-items: start; }
+    .plate { margin-top: 26px; padding: 22px; border: 1px solid var(--line); border-radius: var(--r); background: #fff; box-shadow: var(--shadow-sm); }
+    .plate img { border-radius: 10px; }
+    .plate p { margin-top: 14px; color: var(--muted); font-size: 13.5px; }
     .reasons { display: grid; gap: 14px; }
-    .reason { display: flex; align-items: flex-start; gap: 16px; padding: 22px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255, 255, 255, .035); transition: transform .28s var(--ease), border-color .28s var(--ease), background-color .28s var(--ease); }
-    .reason:hover { transform: translateX(-6px); border-color: var(--line-2); background: rgba(56, 225, 255, .06); }
-    .reason-no { display: grid; place-items: center; flex: 0 0 42px; width: 42px; height: 42px; border: 1px solid var(--line-2); border-radius: 11px; color: var(--cyan); font-family: var(--mono); font-size: 14px; font-weight: 700; }
-    .reason b { display: block; margin-bottom: 4px; font-size: 16px; }
-    .reason span { color: var(--text-2); font-size: 14px; }
+    .reason {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 16px;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      background: #fff;
+      transition: border-color .2s var(--ease), transform .2s var(--ease);
+    }
+    .reason:hover { border-color: var(--brand); transform: translateX(-4px); }
+    .reason-no { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 11px; background: var(--brand-050); color: var(--brand); font-size: 14px; font-weight: 800; direction: ltr; }
+    .reason b { display: block; font-size: 16px; }
+    .reason span { display: block; margin-top: 5px; color: var(--muted); font-size: 14px; }
 
-    /* ---- register (high-contrast light block) ---- */
-    .register { background: var(--void); }
-    .register-card { display: grid; grid-template-columns: .78fr 1.22fr; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); }
-    .register-copy { position: relative; padding: 44px 38px; background: linear-gradient(160deg, var(--navy-700), var(--navy-900)); overflow: hidden; }
-    .register-copy > * { position: relative; z-index: 2; }
-    .register-copy h2 { font-size: clamp(26px, 3vw, 34px); }
-    .register-copy p { color: var(--text-2); font-size: 15px; }
-    .register-note { display: flex; align-items: center; gap: 10px; margin-top: 26px; padding-top: 22px; border-top: 1px dashed var(--line-2); color: var(--text-3); font-size: 13px; }
-    .register-note svg { width: 18px; height: 18px; flex: 0 0 auto; color: var(--cyan); }
+    /* ---- register ---- */
+    .register { background: linear-gradient(180deg, #fff, var(--brand-050)); }
+    .register-card { display: grid; grid-template-columns: .88fr 1.12fr; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: #fff; box-shadow: var(--shadow); }
+    .register-copy { position: relative; padding: 42px 36px; color: #fff; background: linear-gradient(160deg, var(--brand), #0d3c72); }
+    .register-copy::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .07) 1px, transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+    }
+    .register-copy > * { position: relative; }
+    .register-copy .kicker { color: #9dd0ff; }
+    .register-copy h2 { margin: 12px 0 12px; font-size: clamp(22px, 2.7vw, 28px); }
+    .register-copy p { color: #cfe3f7; font-size: 14.5px; }
+    .copy-list { display: grid; gap: 10px; margin-top: 24px; }
+    .copy-list div { display: flex; gap: 10px; align-items: flex-start; color: #e6f1fb; font-size: 14px; }
+    .copy-list svg { flex: none; width: 18px; height: 18px; margin-top: 5px; color: #7fc4ff; }
+    .register-note { display: flex; gap: 9px; align-items: center; margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, .18); font-size: 12.5px; }
+    .register-note svg { flex: none; width: 15px; height: 15px; }
 
-    .form-wrap { padding: 42px 38px; background: #fff; color: #0b2237; }
-    .form-title { margin: 0 0 22px; font-size: 15px; font-weight: 800; color: #0b2237; }
-    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .form-wrap { padding: 40px 36px; }
+    .form-title { margin-bottom: 20px; font-size: 17px; font-weight: 800; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .field { display: grid; gap: 7px; }
-    .field.full, .consent, .form-actions { grid-column: 1 / -1; }
-    label { color: #0b2237; font-size: 13px; font-weight: 800; }
-    input, select { width: 100%; min-height: 52px; padding: 11px 14px; border: 1px solid #c2d5e2; border-radius: 10px; color: #0b2237; background: #fff; transition: border-color .2s var(--ease), box-shadow .2s var(--ease); }
-    input::placeholder { color: #5c7a8d; }
-    input:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(11, 143, 224, .16); outline: 0; }
-    /* must out-specify input:focus above, or keyboard users lose the ring entirely */
-    input:focus-visible, select:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 2px; }
-    .phone { display: grid; grid-template-columns: 1fr 96px; gap: 8px; direction: ltr; }
-    .phone input { direction: ltr; text-align: left; font-family: var(--mono); }
-    .phone select { direction: rtl; font-family: var(--mono); font-weight: 600; }
-    .consent { display: flex; align-items: flex-start; gap: 10px; color: #4e677a; font-size: 13px; line-height: 1.65; cursor: pointer; }
-    .consent input { width: 20px; height: 20px; min-height: 20px; margin-top: 3px; flex: 0 0 20px; accent-color: var(--blue-deep); cursor: pointer; }
-    .form-actions { display: grid; gap: 12px; margin-top: 4px; }
-    .form-actions .btn { width: 100%; min-height: 56px; font-size: 16px; }
-    .form-status { min-height: 22px; margin: 0; font-size: 13px; font-weight: 700; }
-    .form-status.success { color: #07694f; }
-    .form-status.error { color: #b42318; }
-    .whatsapp { display: none; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border: 1px solid #b7d9c9; border-radius: 10px; color: #07694f; background: #eefaf4; font-size: 14px; font-weight: 800; }
-    .hp { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; pointer-events: none; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: 13.5px; font-weight: 700; }
+    input, select {
+      width: 100%;
+      min-height: 50px;
+      padding: 10px 14px;
+      border: 1px solid var(--line-2);
+      border-radius: 11px;
+      background: #fff;
+      color: var(--ink);
+      transition: border-color .18s var(--ease), box-shadow .18s var(--ease);
+    }
+    input::placeholder { color: var(--muted-2); }
+    input:focus, select:focus { outline: 0; border-color: var(--brand); box-shadow: 0 0 0 4px rgba(21, 81, 151, .12); }
+    input[aria-invalid="true"] { border-color: var(--err); box-shadow: 0 0 0 4px rgba(198, 40, 40, .1); }
+    /* country code sits on the RTL start edge; the digits themselves stay LTR. */
+    .phone { display: grid; grid-template-columns: 92px 1fr; gap: 8px; }
+    .phone select { direction: ltr; text-align: center; font-weight: 700; }
+    .phone input { direction: ltr; text-align: left; }
+    .hp { position: absolute; inset-inline-start: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .consent { grid-column: 1 / -1; display: flex; gap: 11px; align-items: flex-start; font-size: 13.5px; font-weight: 500; color: var(--ink-2); cursor: pointer; }
+    .consent input { width: 19px; min-height: 19px; height: 19px; margin-top: 5px; flex: none; accent-color: var(--brand); }
+    .form-actions { grid-column: 1 / -1; display: grid; gap: 12px; margin-top: 4px; }
+    .form-actions .btn { width: 100%; }
+    .form-status { min-height: 20px; font-size: 13.5px; font-weight: 600; }
+    .form-status.ok { color: var(--ok); }
+    .form-status.err { color: var(--err); }
+    .whatsapp { display: none; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border: 1px solid var(--line-2); border-radius: 12px; color: #14875a; font-size: 14px; font-weight: 700; }
+    .whatsapp.show { display: inline-flex; }
+    .whatsapp:hover { border-color: #14875a; background: #f1faf5; }
 
-    /* ---- footer ---- */
-    footer { padding: 40px 0 100px; border-top: 1px solid var(--line); background: var(--navy-900); }
-    .footer { display: flex; align-items: center; justify-content: space-between; gap: 32px; color: var(--text-3); font-size: 12px; }
-    .footer-brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
-    .footer-copy { display: grid; gap: 1px; }
-    .footer-copy strong { color: var(--text); font-size: 13px; }
-    .footer-meta { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 8px 20px; }
-    .footer a { display: inline-flex; align-items: center; min-height: 44px; color: var(--cyan); font-weight: 700; }
+    /* ============ footer ============ */
+    footer { padding: 30px 0; border-top: 1px solid var(--line); background: #fff; }
+    .footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+    .footer img { width: auto; height: 32px; }
+    .footer-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; color: var(--muted); font-size: 13px; }
+    .footer-meta a:hover { color: var(--brand); }
 
-    .mobile-cta { display: none; position: fixed; right: 12px; left: 12px; bottom: max(12px, env(safe-area-inset-bottom)); z-index: 80; transition: opacity .25s var(--ease), transform .25s var(--ease); }
-    .mobile-cta.hidden { opacity: 0; transform: translateY(130%); pointer-events: none; }
-    .mobile-cta .btn { width: 100%; min-height: 56px; }
+    /* ============ sticky mobile cta ============ */
+    .mobile-cta { position: fixed; inset-inline: 0; bottom: 0; z-index: 90; display: none; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: rgba(255, 255, 255, .95); backdrop-filter: blur(10px); border-top: 1px solid var(--line); transition: transform .3s var(--ease); }
+    .mobile-cta .btn { width: 100%; }
+    .mobile-cta.hidden { transform: translateY(120%); }
 
     /* ============ reveal ============ */
-    [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .75s var(--ease), transform .75s var(--ease); transition-delay: var(--d, 0ms); }
+    [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease) var(--d, 0ms), transform .6s var(--ease) var(--d, 0ms); }
     [data-reveal].in { opacity: 1; transform: none; }
 
     /* ============ responsive ============ */
     @media (max-width: 1000px) {
-      .hero-grid, .why-grid, .register-card { grid-template-columns: 1fr; }
-      .hero-grid { gap: 40px; }
-      .why-grid { gap: 34px; }
-      .hero-visual-wrap { order: 2; }
-      .sys-grid { grid-template-columns: repeat(2, 1fr); }
-      .lv-grid { grid-template-columns: 1fr; gap: 0; }
-      /* stacked: the flow now runs top-to-bottom, so turn the arrow to match */
-      .lv-pipe { width: 100%; height: 74px; }
-      .lv-pipe svg { width: 74px; height: 46px; transform: rotate(-90deg); }
-      .hero-frame { max-width: 480px; margin-inline: auto; }
-      .nav-context { display: none; }
+      /* headline leads on narrow screens; the visual follows it, never precedes it. */
+      .hero-grid { grid-template-columns: 1fr; gap: 62px; }
+      .hero-visual { max-width: 560px; margin-inline: auto; }
+      .panel { inset-inline-start: auto; inset-inline-end: -14px; bottom: -30px; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: 1fr; gap: 32px; }
+      .register-card { grid-template-columns: 1fr; }
     }
-    @media (max-width: 640px) {
-      .container { width: min(calc(100% - 26px), var(--container)); }
-      .nav { min-height: 66px; padding: 10px 0; gap: 10px; }
-      .nav-copy { display: none; }
-      .logo-plate { width: 104px; height: 44px; flex-basis: 104px; }
-      .logo-plate img { height: 24px; }
-      .nav .btn { min-height: 44px; padding: 9px 16px; font-size: 13px; margin-inline-start: auto; }
-      .hero { padding: 30px 0 56px; }
-      .hero-glow, .impeller { display: none; }
-      h1 { font-size: 30px; line-height: 1.5; }
-      .hero-lede { margin-top: 14px; font-size: 15px; }
-      .hero-actions { display: grid; margin-top: 24px; }
-      .hero-specs { gap: 14px 22px; margin-top: 24px; }
-      .spec b { font-size: 19px; }
-      .pin { display: none; }
-      .hero-frame { padding: 10px; }
-      .hero-media img { max-height: 420px; }
-      section { padding: 62px 0; }
-      .section-head { margin-bottom: 30px; }
-      .sys-grid { grid-template-columns: 1fr; }
-      .lv { padding: 28px 22px; }
-      .lv-no { font-size: 38px; }
-      .reason { padding: 18px; }
-      .reason:hover { transform: none; }
+    @media (max-width: 620px) {
+      section { padding: 58px 0; }
+      .hero { padding: 40px 0 56px; }
+      .head-link { display: none; }
+      .head .btn { display: none; }
+      .cards { grid-template-columns: 1fr; }
+      .panel { position: static; width: 100%; margin-top: 16px; }
+      .hero-visual { max-width: none; }
+      .form-grid { grid-template-columns: 1fr; }
       .register-copy, .form-wrap { padding: 30px 22px; }
-      .form-grid { grid-template-columns: 1fr; gap: 16px; }
-      .field, .field.full, .consent, .form-actions { grid-column: 1; }
-      .footer { align-items: stretch; flex-direction: column; gap: 20px; }
-      .footer-brand { align-items: center; }
-      .footer-meta { justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--line); }
       .mobile-cta { display: block; }
-      footer { padding-bottom: 112px; }
+      body { padding-bottom: 76px; }
     }
-
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      [data-reveal] { opacity: 1; transform: none; }
-      .scan, .impeller { display: none; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">تخطَّ إلى المحتوى</a>
+  <a class="skip-link" href="#register">تخطَّ إلى نموذج التسجيل</a>
 
   <header>
-    <div class="container nav">
-      <a class="nav-brand" href="#main-content" aria-label="إنجوسوفت - بداية الصفحة">
-        <span class="logo-plate"><img src="assets/engosoft-logo.png" alt="شعار إنجوسوفت" width="244" height="84"></span>
-        <span class="nav-copy"><strong>إنجوسوفت</strong><small>بيت المهندس الأول</small></span>
+    <div class="container head">
+      <a href="https://engosoft.com/" target="_blank" rel="noopener" aria-label="إنجوسوفت">
+        <img src="assets/engosoft-logo.png" alt="إنجوسوفت" width="244" height="84">
       </a>
-      <span class="nav-context">المسار الاحترافي للهندسة الميكانيكية</span>
-      <a class="btn btn-primary" href="#register">اطلب التفاصيل
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <span class="progress" id="progress"></span>
+      <div class="head-actions">
+        <a class="head-link" href="#why-track">لماذا هذا المسار؟</a>
+        <a class="head-link" href="#why-engosoft">لماذا إنجوسوفت؟</a>
+        <a class="btn btn-primary" href="#register">سجّل الآن</a>
+      </div>
+      <div class="progress" id="progress" aria-hidden="true"></div>
     </div>
   </header>
 
-  <main id="main-content">
+  <main id="main">
     <!-- ============ HERO ============ -->
-    <section class="hero bp">
-      <span class="hero-glow" aria-hidden="true"></span>
-      <svg class="impeller" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-        <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="72"/><circle cx="100" cy="100" r="26"/><circle cx="100" cy="100" r="9"/>
-        <path d="M100 26c22 6 34 22 30 40-3 14-16 21-30 34M174 100c-6 22-22 34-40 30-14-3-21-16-34-30M100 174c-22-6-34-22-30-40 3-14 16-21 30-34M26 100c6-22 22-34 40-30 14 3 21 16 34 30"/>
-        <path d="M100 4v16M196 100h-16M100 196v-16M4 100h16"/>
-      </svg>
-
+    <section class="hero">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow tag" data-reveal>مسار تدريبي من مستويين</p>
-          <h1 data-reveal style="--d:70ms">المسار الاحترافي <em>للهندسة الميكانيكية</em></h1>
-          <p class="hero-lede" data-reveal style="--d:140ms">ابدأ بالمستوى التأسيسي، ثم انتقل إلى المستوى الاحترافي في تصميم أنظمة التكييف ومكافحة الحريق والتغذية والصرف، مع إتقان <span class="ltr">AutoCAD</span> وأعمال المكتب الفني.</p>
-          <div class="hero-actions" data-reveal style="--d:210ms">
-            <a class="btn btn-primary" href="#register">اطلب تفاصيل المسار
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-            <a class="btn btn-ghost" href="#why-track">استعرض محتوى المسار</a>
+          <span class="badge" data-reveal><b>★</b> الأكثر مبيعًا في مسارات الميكانيكا</span>
+          <h1 data-reveal style="--d:70ms">المسار الاحترافي<br><span>للهندسة الميكانيكية</span></h1>
+          <p class="hero-lead" data-reveal style="--d:140ms">
+            تدريب عملي على تصميم أنظمة التكييف ومكافحة الحريق والتغذية والصرف،
+            مع إتقان <span class="ltr">AutoCAD</span> وإعداد ملفات الـ<span class="ltr">Shop Drawing</span>
+            التي تؤهلك لتنفيذ المشاريع الميكانيكية بكفاءة.
+          </p>
+          <div class="hero-cta" data-reveal style="--d:210ms">
+            <a class="btn btn-primary" href="#register">اطلب تفاصيل المسار</a>
+            <a class="btn btn-ghost" href="#why-track">تعرّف على المحتوى</a>
           </div>
-          <div class="hero-specs" data-reveal style="--d:280ms">
-            <span class="spec"><b>02</b><span>مستوى دراسي</span></span>
-            <span class="spec"><b>04</b><span>محاور تخصصية</span></span>
-            <span class="spec"><b>AR</b><span>شرح بالعربية</span></span>
+          <div class="hero-facts" data-reveal style="--d:280ms">
+            <span class="fact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+              ٤ أنظمة ميكانيكية
+            </span>
+            <span class="fact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h5l2-6 4 12 2-6h7"/></svg>
+              مستويان: تأسيسي واحترافي
+            </span>
+            <span class="fact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/></svg>
+              شهادة معتمدة من إنجوسوفت
+            </span>
           </div>
         </div>
 
-        <div class="hero-visual-wrap" data-reveal style="--d:180ms">
-          <div class="hero-frame tech-corners">
-            <span class="pin pin-1"><i></i>HVAC</span>
-            <span class="pin pin-2"><i></i>FIRE FIGHTING</span>
-            <span class="pin pin-3"><i></i>PLUMBING</span>
-            <div class="hero-media">
-              <img src="assets/mechanical-hero-v3.webp" alt="تصور هندسي لأنظمة التكييف ومكافحة الحريق والتغذية والصرف داخل مبنى حديث" width="960" height="1200" fetchpriority="high">
-              <span class="scan" aria-hidden="true"></span>
+        <div class="hero-visual" data-reveal style="--d:120ms">
+          <div class="hero-frame">
+            <img src="assets/mechanical-hero-v3.webp" alt="نموذج ثلاثي الأبعاد لأنظمة التكييف ومكافحة الحريق والتغذية والصرف داخل مبنى" width="960" height="1200" fetchpriority="high">
+          </div>
+
+          <!-- simple mechanical readout: the four systems the track covers -->
+          <aside class="panel" id="panel" aria-label="ملخص محتوى المسار">
+            <div class="panel-head">
+              <b>أنظمة المسار</b>
+              <span class="panel-live"><i></i> تدريب عملي</span>
             </div>
-          </div>
+            <div class="gauge" style="--sig:var(--hvac)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="9" rx="2"/><path d="M6 14v3M12 14v4M18 14v3"/><path d="M6 9h12"/></svg>
+              <span>تكييف وتهوية</span>
+              <em>HVAC</em>
+            </div>
+            <div class="gauge" style="--sig:var(--fire)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5 4.2 5 9a5 5 0 0 1-10 0c0-2 1-3.4 2-4.5.4 1.6 1.3 2.2 2 2.2 1 0 1.6-1 1-3-.2-1.6-2-3.7-2-3.7Z"/><path d="M4 20h16"/></svg>
+              <span>مكافحة الحريق</span>
+              <em>FIRE</em>
+            </div>
+            <div class="gauge" style="--sig:var(--plumb)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14h6M16 14h6"/><path d="m8 10 4 4-4 4V10ZM16 10l-4 4 4 4V10Z"/><path d="M12 14V6"/><circle cx="12" cy="4" r="2"/></svg>
+              <span>تغذية وصرف</span>
+              <em>PLUMBING</em>
+            </div>
+            <div class="gauge" style="--sig:var(--draft)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M2.5 8h19"/><path d="m6 15 3-4 2.5 3 2-2.5"/></svg>
+              <span>مكتب فني ومخططات</span>
+              <em>SHOP DWG</em>
+            </div>
+            <div class="panel-foot">
+              <div><b>٤</b><span>أنظمة</span></div>
+              <div><b>٢</b><span>مستويان</span></div>
+              <div><b>٣</b><span>برامج</span></div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- ============ TICKER ============ -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker-track">
-        <span>HVAC LOAD CALCULATION</span><span>HAP</span><span>CHILLED WATER SYSTEMS</span><span>DUCT &amp; AIR DISTRIBUTION</span><span>FIRE SPRINKLER HYDRAULICS</span><span>GAS SUPPRESSION</span><span>PUMP ROOMS</span><span>WATER &amp; DRAINAGE NETWORKS</span><span>TANKS &amp; PUMPS</span><span>SHOP DRAWINGS</span><span>AUTOCAD</span><span>AUTOFLUID</span>
-        <span>HVAC LOAD CALCULATION</span><span>HAP</span><span>CHILLED WATER SYSTEMS</span><span>DUCT &amp; AIR DISTRIBUTION</span><span>FIRE SPRINKLER HYDRAULICS</span><span>GAS SUPPRESSION</span><span>PUMP ROOMS</span><span>WATER &amp; DRAINAGE NETWORKS</span><span>TANKS &amp; PUMPS</span><span>SHOP DRAWINGS</span><span>AUTOCAD</span><span>AUTOFLUID</span>
-      </div>
-    </div>
-
-    <!-- ============ SYSTEMS ============ -->
-    <section class="systems bp" id="why-track">
+    <!-- ============ WHY THIS TRACK ============ -->
+    <section class="alt" id="why-track">
       <div class="container">
         <div class="section-head">
-          <p class="kicker tag" data-reveal>ماذا يشمل المسار؟</p>
-          <h2 data-reveal style="--d:70ms">أربعة محاور أساسية في الهندسة الميكانيكية.</h2>
-          <p data-reveal style="--d:140ms">تبدأ من الأساسيات، ثم تنتقل إلى التطبيقات المتقدمة وفق مستواك وخبرتك.</p>
+          <span class="kicker" data-reveal>لماذا تختار هذا المسار؟</span>
+          <h2 data-reveal style="--d:70ms">لأنه يغطي دورة العمل الميكانيكية كاملة، لا جزءًا منها.</h2>
+          <p data-reveal style="--d:140ms">
+            تبدأ من حساب الأحمال والاختيار الهندسي، وتنتهي بمخطط تنفيذي جاهز للتسليم في الموقع —
+            وهي المهارات نفسها التي يطلبها المكتب الاستشاري ومقاول التنفيذ.
+          </p>
         </div>
-        <div class="sys-grid">
-          <article class="sys" style="--sig:var(--hvac)" data-reveal>
-            <svg class="sys-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="9" y="11" width="30" height="26" rx="2.5"/>
-              <circle cx="24" cy="24" r="8.5"/>
-              <path d="M24 15.5c3.4 0 4.9 2.3 4.1 4.5-.6 1.6-2.3 2.2-4.1 4M32.5 24c0 3.4-2.3 4.9-4.5 4.1-1.6-.6-2.2-2.3-4-4.1M24 32.5c-3.4 0-4.9-2.3-4.1-4.5.6-1.6 2.3-2.2 4.1-4M15.5 24c0-3.4 2.3-4.9 4.5-4.1 1.6.6 2.2 2.3 4 4.1"/>
-              <circle cx="24" cy="24" r="2"/>
-              <path d="M2 17h5M2 24h5M2 31h5M41 17h5M41 24h5M41 31h5"/>
-            </svg>
-            <span class="sys-code">HVAC</span>
-            <h3>التكييف والتهوية</h3>
-            <p>حساب الأحمال ببرنامج <span class="ltr">HAP</span>، وتصميم أنظمة الهواء والمياه المثلجة.</p>
+
+        <div class="cards">
+          <article class="card" style="--sig:var(--hvac)" data-reveal>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="9" rx="2"/><path d="M6 14v3M12 14v4M18 14v3"/><path d="M6 9h12"/></svg>
+            </div>
+            <span class="card-code">HVAC</span>
+            <h3>تصميم أنظمة التكييف</h3>
+            <p>حساب الأحمال الحرارية ببرنامج <span class="ltr">HAP</span>، وتصميم توزيع الهواء وشبكات المياه المثلجة، واختيار النظام المناسب.</p>
           </article>
 
-          <article class="sys" style="--sig:var(--fire)" data-reveal>
-            <svg class="sys-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M24 4v8"/>
-              <path d="M12 12h24"/>
-              <rect x="20.5" y="12" width="7" height="8" rx="1.5"/>
-              <path d="M16 21.5h16"/>
-              <path d="M24 25.5v9"/>
-              <path d="M18.5 25.5c-.8 2.6-.8 5.2 0 7.8M29.5 25.5c.8 2.6.8 5.2 0 7.8"/>
-              <path d="M13 24.5c-1.6 2.6-2.2 5.2-2 8M35 24.5c1.6 2.6 2.2 5.2 2 8"/>
-            </svg>
-            <span class="sys-code">FIRE FIGHTING</span>
-            <h3>مكافحة الحريق</h3>
-            <p>تصميم شبكات الرش الآلي، والحسابات الهيدروليكية، وأنظمة الغاز وغرف المضخات.</p>
+          <article class="card" style="--sig:var(--fire); --d:80ms" data-reveal>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5 4.2 5 9a5 5 0 0 1-10 0c0-2 1-3.4 2-4.5.4 1.6 1.3 2.2 2 2.2 1 0 1.6-1 1-3-.2-1.6-2-3.7-2-3.7Z"/><path d="M4 20h16"/></svg>
+            </div>
+            <span class="card-code">FIRE FIGHTING</span>
+            <h3>أنظمة مكافحة الحريق</h3>
+            <p>توزيع كبائن الحريق والرشاشات التلقائية، والحسابات الهيدروليكية، وتصميم غرفة المضخات وسعات الخزانات.</p>
           </article>
 
-          <article class="sys" style="--sig:var(--plumb)" data-reveal>
-            <svg class="sys-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 30h11M34 30h11"/>
-              <path d="M14 23.5 24 30 14 36.5Z"/>
-              <path d="M34 23.5 24 30l10 6.5Z"/>
-              <path d="M24 30V17"/>
-              <circle cx="24" cy="13.5" r="3.8"/>
-              <path d="M17.5 13.5h13"/>
-              <path d="M8 26v8M40 26v8"/>
-            </svg>
-            <span class="sys-code">PLUMBING</span>
+          <article class="card" style="--sig:var(--plumb)" data-reveal>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14h6M16 14h6"/><path d="m8 10 4 4-4 4V10ZM16 10l-4 4 4 4V10Z"/><path d="M12 14V6"/><circle cx="12" cy="4" r="2"/></svg>
+            </div>
+            <span class="card-code">PLUMBING</span>
             <h3>التغذية والصرف</h3>
-            <p>تصميم شبكات المياه والصرف والأمطار، واختيار المضخات والخزانات المناسبة.</p>
+            <p>تصميم شبكات المياه والصرف الصحي وتصريف الأمطار، مع اختيار المضخات والخزانات بالحسابات الصحيحة.</p>
           </article>
 
-          <article class="sys" style="--sig:var(--draft)" data-reveal>
-            <svg class="sys-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="4.5" y="8" width="39" height="32" rx="2.5"/>
-              <path d="M4.5 14.5h39"/>
-              <path d="M13 23.5 18.5 16l5 5.5 4.5-4.5"/>
-              <path d="M12 31h13"/>
-              <path d="M12 28.5v5M25 28.5v5"/>
-              <path d="M29.5 40V30.5h14"/>
-            </svg>
-            <span class="sys-code">SHOP DRAWING</span>
+          <article class="card" style="--sig:var(--draft)" data-reveal>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M2.5 8h19"/><path d="m6 15 3-4 2.5 3 2-2.5"/></svg>
+            </div>
+            <span class="card-code">SHOP DRAWING</span>
             <h3>أعمال المكتب الفني</h3>
-            <p>إعداد المخططات التنفيذية وتنسيق الأعمال باستخدام <span class="ltr">AutoCAD</span> و<span class="ltr">AutoFLUID</span>.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ LEVELS ============ -->
-    <section class="levels bp">
-      <div class="container">
-        <div class="section-head">
-          <p class="kicker tag" data-reveal>كيف يتدرّج المسار؟</p>
-          <h2 data-reveal style="--d:70ms">مستويان، تدخل من الباب المناسب لخبرتك.</h2>
-        </div>
-
-        <div class="lv-grid">
-          <article class="lv" style="--sig:var(--cyan)" data-reveal>
-            <span class="lv-no">01</span>
-            <h3>المستوى التأسيسي</h3>
-            <p>يبدأ معك من الأساسيات، ومناسب لبدء التعلّم حتى لو كانت خبرتك محدودة.</p>
-            <div class="lv-tags"><span>الأساسيات</span><span>شرح عملي</span><span>تمارين تطبيقية</span></div>
-          </article>
-
-          <div class="lv-pipe" aria-hidden="true">
-            <svg viewBox="0 0 96 46" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <path d="M4 23h88" opacity=".45"/>
-              <path class="flow" d="M4 23h88" stroke="var(--cyan)"/>
-              <path d="M18 15l-8 8 8 8" stroke="var(--cyan)"/>
-            </svg>
-          </div>
-
-          <article class="lv lv-2" style="--sig:var(--draft)" data-reveal>
-            <span class="lv-no">02</span>
-            <h3>المستوى الاحترافي</h3>
-            <p>تتعمّق في الأنظمة المتقدمة وأعمال المكتب الفني بما يناسب أهدافك المهنية.</p>
-            <div class="lv-tags"><span>أنظمة متقدمة</span><span>المكتب الفني</span><span>مخططات تنفيذية</span></div>
+            <p>إعداد المخططات التنفيذية وتنسيق الأنظمة على <span class="ltr">AutoCAD</span> بما يجعل مخرجاتك جاهزة للاعتماد.</p>
           </article>
         </div>
 
         <div class="tools" data-reveal>
-          <b>البرامج المستخدمة</b>
+          <b>البرامج التي تتقنها:</b>
           <span class="tool">AutoCAD</span>
           <span class="tool">HAP</span>
           <span class="tool">AutoFLUID</span>
@@ -596,42 +519,73 @@
     </section>
 
     <!-- ============ WHY ENGOSOFT ============ -->
-    <section class="why bp">
+    <section id="why-engosoft">
       <div class="container why-grid">
         <div>
-          <p class="kicker tag" data-reveal>لماذا إنجوسوفت؟</p>
-          <h2 data-reveal style="--d:70ms">تعلّم وفق مسار يناسب خبرتك.</h2>
-          <div class="badge-plate" data-reveal style="--d:140ms">
-            <b>02</b>
-            <span>مستوى: تأسيسي للمبتدئ،<br>واحترافي لمن يريد التعمّق.</span>
+          <span class="kicker" data-reveal>لماذا إنجوسوفت؟</span>
+          <h2 data-reveal style="--d:70ms; font-size:clamp(23px,3.1vw,33px); margin-top:12px">بيت المهندس الأول.</h2>
+          <div class="plate" data-reveal style="--d:140ms">
+            <img src="assets/mechanical-course-official.webp" alt="المسار الاحترافي للهندسة الميكانيكية من إنجوسوفت" width="640" height="360" loading="lazy">
+            <p>مسار مبنيّ على احتياج سوق العمل الفعلي في السعودية والخليج، ويُدرَّس بالعربية مع مصطلحات المهنة الإنجليزية.</p>
           </div>
         </div>
+
         <div class="reasons">
           <div class="reason" data-reveal>
             <span class="reason-no">01</span>
-            <div><b>ابدأ من الأساسيات</b><span>المستوى التأسيسي مناسب لبدء التعلّم حتى مع الخبرة المحدودة.</span></div>
+            <div>
+              <b>تبدأ من مستواك أنت</b>
+              <span>المستوى التأسيسي يناسبك حتى لو كانت خبرتك محدودة، ثم تنتقل للمستوى الاحترافي حين تجهز.</span>
+            </div>
           </div>
-          <div class="reason" data-reveal style="--d:90ms">
+          <div class="reason" data-reveal style="--d:80ms">
             <span class="reason-no">02</span>
-            <div><b>تعلّم من خلال التطبيق</b><span>شرح عملي وتمارين تساعدك على فهم خطوات التصميم وإعداد المخططات.</span></div>
+            <div>
+              <b>تعلُّم بالتطبيق لا بالتلقين</b>
+              <span>شرح عملي وتمارين على مشاريع حقيقية تمرّ فيها بخطوات التصميم كاملة حتى إخراج المخطط.</span>
+            </div>
           </div>
-          <div class="reason" data-reveal style="--d:180ms">
+          <div class="reason" data-reveal style="--d:160ms">
             <span class="reason-no">03</span>
-            <div><b>تقدّم إلى المستوى الاحترافي</b><span>تعمّق في الأنظمة المتقدمة وأعمال المكتب الفني وفق أهدافك المهنية.</span></div>
+            <div>
+              <b>مدربون من داخل السوق</b>
+              <span>يشرحون لك ما يحدث فعلًا في المكاتب الاستشارية ومواقع التنفيذ، لا النظري فقط.</span>
+            </div>
+          </div>
+          <div class="reason" data-reveal style="--d:240ms">
+            <span class="reason-no">04</span>
+            <div>
+              <b>شهادة ومتابعة بعد المسار</b>
+              <span>شهادة معتمدة من إنجوسوفت، ومستشار تدريب يساعدك على اختيار خطوتك المهنية التالية.</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============ REGISTER ============ -->
-    <section class="register bp" id="register">
+    <section class="register" id="register">
       <div class="container register-card" data-reveal>
-        <div class="register-copy bp">
-          <p class="kicker tag">ابدأ خطتك المهنية</p>
+        <div class="register-copy">
+          <span class="kicker">ابدأ خطتك المهنية</span>
           <h2>اطلب تفاصيل المسار</h2>
-          <p>أرسل بياناتك، وسيتواصل معك مستشار التدريب لتوضيح المواعيد ونظام الدراسة والمستوى الملائم لخبرتك.</p>
+          <p>أرسل بياناتك وسيتواصل معك مستشار التدريب لتوضيح المواعيد ونظام الدراسة والمستوى الملائم لخبرتك.</p>
+          <div class="copy-list">
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
+              <span>تحديد المستوى المناسب لخبرتك الحالية</span>
+            </div>
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
+              <span>المواعيد ونظام الدراسة والمدة</span>
+            </div>
+            <div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
+              <span>العروض المتاحة وطرق السداد</span>
+            </div>
+          </div>
           <p class="register-note">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             بياناتك تُستخدم للتواصل معك بخصوص المسار فقط.
           </p>
         </div>
@@ -647,14 +601,18 @@
               <div class="field">
                 <label for="phone">رقم الجوال</label>
                 <div class="phone">
+                  <select id="country_code" name="country_code" aria-label="مفتاح الدولة">
+                    <option>+966</option><option>+20</option><option>+971</option><option>+974</option><option>+965</option><option>+968</option><option>+973</option><option>+962</option><option>+964</option><option>+218</option><option>+249</option>
+                  </select>
                   <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required placeholder="5XXXXXXXX">
-                  <select id="country_code" name="country_code" aria-label="مفتاح الدولة"><option>+966</option><option>+20</option><option>+971</option><option>+974</option><option>+965</option><option>+968</option><option>+973</option><option>+962</option><option>+964</option><option>+218</option><option>+249</option></select>
                 </div>
               </div>
               <div class="field">
                 <label for="country">الدولة</label>
                 <input id="country" name="country" list="countries" autocomplete="country-name" required placeholder="اختر الدولة">
-                <datalist id="countries"><option value="السعودية"><option value="مصر"><option value="الإمارات"><option value="قطر"><option value="الكويت"><option value="عُمان"><option value="البحرين"><option value="الأردن"><option value="العراق"><option value="ليبيا"><option value="السودان"></datalist>
+                <datalist id="countries">
+                  <option value="السعودية"></option><option value="مصر"></option><option value="الإمارات"></option><option value="قطر"></option><option value="الكويت"></option><option value="عُمان"></option><option value="البحرين"></option><option value="الأردن"></option><option value="العراق"></option><option value="ليبيا"></option><option value="السودان"></option>
+                </datalist>
               </div>
               <div class="field full">
                 <label for="job_description">المسمى الوظيفي / طبيعة العمل</label>
@@ -664,11 +622,17 @@
                 <label for="company_website">الموقع الإلكتروني</label>
                 <input id="company_website" name="company_website" tabindex="-1" autocomplete="off">
               </div>
-              <label class="consent"><input type="checkbox" name="consent" required><span>أوافق على تواصل فريق إنجوسوفت معي بخصوص المسار.</span></label>
+              <label class="consent">
+                <input type="checkbox" name="consent" required>
+                <span>أوافق على تواصل فريق إنجوسوفت معي بخصوص المسار.</span>
+              </label>
               <div class="form-actions">
                 <button class="btn btn-primary" type="submit">أرسل طلب التفاصيل</button>
                 <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-                <a class="whatsapp" id="whatsapp" href="https://wa.me/966920016295?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%B1%20%D8%A7%D9%84%D9%85%D9%8A%D9%83%D8%A7%D9%86%D9%8A%D9%83%D9%8A" target="_blank" rel="noopener">تواصل مباشرة عبر واتساب</a>
+                <a class="whatsapp" id="whatsapp" href="https://wa.me/966920016295?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%B1%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%20%D9%84%D9%84%D9%87%D9%86%D8%AF%D8%B3%D8%A9%20%D8%A7%D9%84%D9%85%D9%8A%D9%83%D8%A7%D9%86%D9%8A%D9%83%D9%8A%D8%A9" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.2 1.3-1.9 1.4-.5.1-1.1.1-3.4-.8-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5c-.1.2-.3.3-.1.6.1.3.6 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.2.1.7-.1 1.4Z"/></svg>
+                  تواصل مباشرة عبر واتساب
+                </a>
               </div>
             </div>
           </form>
@@ -679,11 +643,13 @@
 
   <footer>
     <div class="container footer">
-      <div class="footer-brand">
-        <span class="logo-plate"><img src="assets/engosoft-logo.png" alt="إنجوسوفت" width="244" height="84" loading="lazy"></span>
-        <span class="footer-copy"><strong>إنجوسوفت</strong><span>بيت المهندس الأول.</span></span>
+      <a href="https://engosoft.com/" target="_blank" rel="noopener" aria-label="إنجوسوفت">
+        <img src="assets/engosoft-logo.png" alt="إنجوسوفت" width="244" height="84" loading="lazy">
+      </a>
+      <div class="footer-meta">
+        <span>© 2026 إنجوسوفت — جميع الحقوق محفوظة</span>
+        <a href="https://engosoft.com/" target="_blank" rel="noopener">الموقع الرسمي</a>
       </div>
-      <div class="footer-meta"><span>© 2026 جميع الحقوق محفوظة</span><a href="https://engosoft.com/" target="_blank" rel="noopener">الموقع الرسمي</a></div>
     </div>
   </footer>
 
@@ -693,29 +659,8 @@
     (() => {
       const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      /* ---- prime the discipline icons so they can draw themselves like a plot ----
-         measured per shape: pathLength normalisation is unreliable on rect/circle. */
-      if (!reduced) {
-        document.querySelectorAll(".sys-icon").forEach((svg) => {
-          const shapes = [...svg.children].filter((el) => typeof el.getTotalLength === "function");
-          shapes.forEach((el, i) => {
-            let len = 0;
-            try { len = el.getTotalLength(); } catch { len = 0; }
-            if (!len) return;
-            el.style.strokeDasharray = len;
-            el.style.strokeDashoffset = len;
-            el.style.transitionDelay = i * 90 + "ms";
-          });
-          svg.classList.add("draw");
-        });
-      }
-      const drawIcons = (card) => {
-        const svg = card.querySelector(".sys-icon.draw");
-        if (svg) [...svg.children].forEach((el) => { el.style.strokeDashoffset = "0"; });
-      };
-
       /* ---- scroll reveal ---- */
-      const targets = document.querySelectorAll("[data-reveal], .sys");
+      const targets = document.querySelectorAll("[data-reveal]");
       if (reduced) {
         targets.forEach((el) => el.classList.add("in"));
       } else {
@@ -723,7 +668,6 @@
           entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
             entry.target.classList.add("in");
-            if (entry.target.classList.contains("sys")) drawIcons(entry.target);
             io.unobserve(entry.target);
           });
         }, { threshold: .15, rootMargin: "0px 0px -6% 0px" });
@@ -736,8 +680,7 @@
       let ticking = false;
       const paint = () => {
         const max = root.scrollHeight - root.clientHeight;
-        const ratio = max > 0 ? Math.min(1, Math.max(0, root.scrollTop / max)) : 0;
-        progress.style.transform = `scaleX(${ratio})`;
+        progress.style.transform = `scaleX(${max > 0 ? Math.min(1, Math.max(0, root.scrollTop / max)) : 0})`;
         ticking = false;
       };
       addEventListener("scroll", () => {
@@ -747,61 +690,98 @@
       }, { passive: true });
       paint();
 
+      /* ---- sticky mobile cta hides while the form is in view ---- */
+      const mobileCta = document.getElementById("mobile-cta");
+      new IntersectionObserver(([entry]) => {
+        mobileCta.classList.toggle("hidden", entry.isIntersecting);
+      }, { threshold: .15 }).observe(document.getElementById("register"));
+
       /* ---- lead form ---- */
       const form = document.getElementById("lead-form");
       const status = document.getElementById("form-status");
       const whatsapp = document.getElementById("whatsapp");
       const button = form.querySelector('button[type="submit"]');
-      const mobileCta = document.getElementById("mobile-cta");
-      new IntersectionObserver(([entry]) => mobileCta.classList.toggle("hidden", entry.isIntersecting), { threshold: .15 }).observe(document.getElementById("register"));
+      const params = new URLSearchParams(location.search);
+
+      const markInvalid = (field, invalid) => {
+        if (field) field.setAttribute("aria-invalid", invalid ? "true" : "false");
+      };
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
         status.className = "form-status";
         status.textContent = "";
-        whatsapp.style.display = "none";
-        if (!form.reportValidity()) return;
 
         const data = new FormData(form);
-        const query = new URLSearchParams(location.search);
+        const required = ["full_name", "phone", "country", "job_description"];
+        let firstBad = null;
+        required.forEach((name) => {
+          const field = form.elements[name];
+          const empty = !String(data.get(name) || "").trim();
+          markInvalid(field, empty);
+          if (empty && !firstBad) firstBad = field;
+        });
+
+        if (firstBad) {
+          status.className = "form-status err";
+          status.textContent = "من فضلك أكمل الحقول المطلوبة.";
+          firstBad.focus();
+          return;
+        }
+        if (!form.elements.consent.checked) {
+          status.className = "form-status err";
+          status.textContent = "من فضلك وافق على التواصل معك بخصوص المسار.";
+          form.elements.consent.focus();
+          return;
+        }
+
         const payload = {
-          full_name: String(data.get("full_name") || "").trim(),
-          phone: String(data.get("phone") || "").trim(),
-          country_code: String(data.get("country_code") || "").trim(),
-          country: String(data.get("country") || "").trim(),
-          job_description: String(data.get("job_description") || "").trim(),
-          company_website: String(data.get("company_website") || ""),
-          consent: data.get("consent") === "on",
-          course_name: "Mechanical Engineering Professional Track",
+          full_name: data.get("full_name"),
+          phone: data.get("phone"),
+          country_code: data.get("country_code"),
+          country: data.get("country"),
+          job_description: data.get("job_description"),
+          company_website: data.get("company_website") || "",
+          consent: true,
           course_slug: "mechanical-professional-track",
-          lead_source: query.get("utm_source") || "landing_page",
+          lead_source: "landing_page",
           page_url: location.href,
           referrer: document.referrer,
-          utm_source: query.get("utm_source") || "",
-          utm_medium: query.get("utm_medium") || "",
-          utm_campaign: query.get("utm_campaign") || "",
-          utm_content: query.get("utm_content") || "",
-          utm_term: query.get("utm_term") || "",
-          created_at: new Date().toISOString()
+          utm_source: params.get("utm_source") || "",
+          utm_medium: params.get("utm_medium") || "",
+          utm_campaign: params.get("utm_campaign") || "",
+          utm_content: params.get("utm_content") || "",
+          utm_term: params.get("utm_term") || ""
         };
 
         button.disabled = true;
-        button.textContent = "جارٍ إرسال الطلب...";
+        button.textContent = "جارٍ الإرسال…";
+
         try {
-          const response = await fetch("/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-          const result = await response.json().catch(() => ({}));
-          if (!response.ok) throw new Error(result.message || "تعذر الإرسال");
-          status.className = "form-status success";
-          status.textContent = "تم استلام طلبك، وسيتواصل معك فريق إنجوسوفت.";
+          const response = await fetch("/api/leads", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          if (!response.ok) throw new Error(String(response.status));
+
           form.reset();
+          whatsapp.classList.remove("show");
+          status.className = "form-status ok";
+          status.textContent = "تم استلام طلبك، سيتواصل معك مستشار التدريب قريبًا.";
         } catch {
-          status.className = "form-status error";
-          status.textContent = "تعذّر إرسال الطلب الآن. يمكنك التواصل معنا عبر واتساب.";
-          whatsapp.style.display = "inline-flex";
+          /* never fake a success: fall back to a channel that actually reaches the team. */
+          status.className = "form-status err";
+          status.textContent = "تعذّر إرسال الطلب الآن. تواصل معنا مباشرة عبر واتساب.";
+          whatsapp.classList.add("show");
         } finally {
           button.disabled = false;
           button.textContent = "أرسل طلب التفاصيل";
         }
+      });
+
+      form.addEventListener("input", (event) => {
+        if (event.target.getAttribute("aria-invalid") === "true") markInvalid(event.target, false);
       });
     })();
   </script>

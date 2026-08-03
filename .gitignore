@@ -1,11 +1,4 @@
+.DS_Store
+.vercel
+node_modules/
 assets/*-source
-assets/*contact*.jpg
-assets/hero.webp
-assets/hero-mobile.webp
-assets/fire.webp
-assets/hvac.webp
-assets/plumbing.webp
-assets/site.webp
-assets/systems-overview.webp
-assets/fire-system.webp
-assets/bim-building.webp
