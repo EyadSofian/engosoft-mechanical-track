@@ -6,13 +6,13 @@
   <meta name="theme-color" content="#155197">
   <meta name="color-scheme" content="light">
   <title>المسار الاحترافي للهندسة الميكانيكية | إنجوسوفت</title>
-  <meta name="description" content="مسار تدريبي عملي في تصميم أنظمة التكييف ومكافحة الحريق والتغذية والصرف وأعمال المكتب الفني، مع إتقان AutoCAD وHAP وإعداد المخططات التنفيذية.">
+  <meta name="description" content="باقة من ٦ دورات: تصميم التكييف ومكافحة الحريق والتغذية والصرف والغازات الطبية، وأعمال المكتب الفني والتنفيذ بالموقع — من المبتدئ إلى المتقدم، مسجّلة أو حضورية.">
   <link rel="canonical" href="https://engosoft-mechanical-track.vercel.app/">
   <link rel="icon" href="assets/engosoft-logo.png">
   <meta property="og:locale" content="ar_SA">
   <meta property="og:type" content="website">
   <meta property="og:title" content="المسار الاحترافي للهندسة الميكانيكية | إنجوسوفت">
-  <meta property="og:description" content="من حساب الأحمال حتى المخططات التنفيذية: تكييف، مكافحة حريق، تغذية وصرف، ومكتب فني.">
+  <meta property="og:description" content="٦ دورات في باقة واحدة: تكييف، مكافحة حريق، تغذية وصرف، غازات طبية، مكتب فني، وتنفيذ بالموقع.">
   <meta property="og:image" content="https://engosoft-mechanical-track.vercel.app/assets/mechanical-hero-v3.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,6 +41,8 @@
       --fire: #c62828;
       --plumb: #155197;
       --draft: #d98014;
+      --site: #4a6b8a;
+      --gas: #0f8a6a;
 
       --ok: #14875a;
       --err: #c62828;
@@ -177,7 +179,7 @@
       background: var(--brand-100);
       box-shadow: var(--shadow-lg);
     }
-    .hero-frame img { width: 100%; aspect-ratio: 4 / 3.35; object-fit: cover; object-position: center 42%; }
+    .hero-frame img { width: 100%; aspect-ratio: 4 / 3.85; object-fit: cover; object-position: center 42%; }
 
     .panel {
       position: absolute;
@@ -196,10 +198,10 @@
     .panel-live { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 10.5px; font-weight: 600; }
     .panel-live i { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px rgba(20, 135, 90, .16); }
     /* one row per discipline: icon, arabic name, the drawing-set code it maps to. */
-    .gauge { display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 9px; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+    .gauge { display: grid; grid-template-columns: 18px 1fr auto; align-items: center; gap: 9px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
     .gauge:last-of-type { border-bottom: 0; }
-    .gauge svg { width: 19px; height: 19px; color: var(--sig); }
-    .gauge > span { font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+    .gauge svg { width: 17px; height: 17px; color: var(--sig); }
+    .gauge > span { font-size: 12px; font-weight: 600; color: var(--ink-2); }
     .gauge em { padding: 2px 8px; border-radius: 99px; background: color-mix(in srgb, var(--sig) 11%, #fff); color: var(--sig); font-size: 9.5px; font-style: normal; font-weight: 700; unicode-bidi: isolate; }
     .panel-foot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); text-align: center; }
     .panel-foot b { display: block; color: var(--brand); font-size: 16px; line-height: 1.5; }
@@ -214,7 +216,7 @@
     .alt { background: var(--surface); border-block: 1px solid var(--line); }
 
     /* ---- why this track ---- */
-    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .card {
       position: relative;
       padding: 26px 22px;
@@ -244,11 +246,19 @@
 
     .tools { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 26px; padding: 16px 20px; border: 1px dashed var(--line-2); border-radius: var(--r); background: #fff; }
     .tools b { margin-inline-end: 6px; font-size: 14px; }
-    .tool { padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--brand-050); color: var(--brand); font-size: 13px; font-weight: 700; direction: ltr; }
+    .tool { padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--brand-050); color: var(--brand); font-size: 13px; font-weight: 700; unicode-bidi: isolate; }
+
+    .audience { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 14px; padding: 16px 20px; border: 1px solid var(--line); border-radius: var(--r); background: #fff; }
+    .audience b { margin-inline-end: 6px; font-size: 14px; }
+    .audience span { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 13px; }
+    .audience span::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--brand); flex: none; }
 
     /* ---- why engosoft ---- */
     .why-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 46px; align-items: start; }
-    .plate { margin-top: 26px; padding: 22px; border: 1px solid var(--line); border-radius: var(--r); background: #fff; box-shadow: var(--shadow-sm); }
+    .stat { display: flex; align-items: center; gap: 14px; margin-top: 22px; padding: 16px 20px; border: 1px solid var(--line); border-radius: var(--r); background: var(--brand-050); }
+    .stat b { color: var(--brand); font-size: 26px; line-height: 1.3; unicode-bidi: isolate; }
+    .stat span { color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .plate { margin-top: 16px; padding: 22px; border: 1px solid var(--line); border-radius: var(--r); background: #fff; box-shadow: var(--shadow-sm); }
     .plate img { border-radius: 10px; }
     .plate p { margin-top: 14px; color: var(--muted); font-size: 13.5px; }
     .reasons { display: grid; gap: 14px; }
@@ -391,12 +401,12 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="badge" data-reveal><b>★</b> الأكثر مبيعًا في مسارات الميكانيكا</span>
+          <span class="badge" data-reveal><b>★</b> باقة متكاملة — ٦ دورات في مسار واحد</span>
           <h1 data-reveal style="--d:70ms">المسار الاحترافي<br><span>للهندسة الميكانيكية</span></h1>
           <p class="hero-lead" data-reveal style="--d:140ms">
-            تدريب عملي على تصميم أنظمة التكييف ومكافحة الحريق والتغذية والصرف،
-            مع إتقان <span class="ltr">AutoCAD</span> وإعداد ملفات الـ<span class="ltr">Shop Drawing</span>
-            التي تؤهلك لتنفيذ المشاريع الميكانيكية بكفاءة.
+            باقة من <b>٦ دورات</b> تغطي أنظمة التكييف والحريق والصحي والغازات الطبية،
+            وأعمال المكتب الفني والتنفيذ بالموقع — مع إتقان <span class="ltr">AutoCAD</span>
+            وملفات الـ<span class="ltr">Shop Drawing</span> التي تؤهلك لتنفيذ المشاريع الميكانيكية بكفاءة.
           </p>
           <div class="hero-cta" data-reveal style="--d:210ms">
             <a class="btn btn-primary" href="#register">اطلب تفاصيل المسار</a>
@@ -405,15 +415,19 @@
           <div class="hero-facts" data-reveal style="--d:280ms">
             <span class="fact">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
-              ٤ أنظمة ميكانيكية
+              ٦ دورات في باقة واحدة
             </span>
             <span class="fact">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h5l2-6 4 12 2-6h7"/></svg>
-              مستويان: تأسيسي واحترافي
+              من المبتدئ إلى المتقدم
+            </span>
+            <span class="fact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+              مسجّلة أو حضورية
             </span>
             <span class="fact">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/></svg>
-              شهادة معتمدة من إنجوسوفت
+              شهادة إتمام
             </span>
           </div>
         </div>
@@ -423,11 +437,11 @@
             <img src="assets/mechanical-hero-v3.webp" alt="نموذج ثلاثي الأبعاد لأنظمة التكييف ومكافحة الحريق والتغذية والصرف داخل مبنى" width="960" height="1200" fetchpriority="high">
           </div>
 
-          <!-- simple mechanical readout: the four systems the track covers -->
-          <aside class="panel" id="panel" aria-label="ملخص محتوى المسار">
+          <!-- readout of the six courses the package actually contains -->
+          <aside class="panel" id="panel" aria-label="محتويات الباقة">
             <div class="panel-head">
-              <b>أنظمة المسار</b>
-              <span class="panel-live"><i></i> تدريب عملي</span>
+              <b>محتويات الباقة</b>
+              <span class="panel-live"><i></i> ٦ دورات</span>
             </div>
             <div class="gauge" style="--sig:var(--hvac)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="9" rx="2"/><path d="M6 14v3M12 14v4M18 14v3"/><path d="M6 9h12"/></svg>
@@ -446,13 +460,23 @@
             </div>
             <div class="gauge" style="--sig:var(--draft)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M2.5 8h19"/><path d="m6 15 3-4 2.5 3 2-2.5"/></svg>
-              <span>مكتب فني ومخططات</span>
+              <span>المكتب الفني</span>
               <em>SHOP DWG</em>
             </div>
+            <div class="gauge" style="--sig:var(--site)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9.5 21v-5h5v5"/><path d="M9.5 11.5h5"/></svg>
+              <span>التنفيذ بالموقع</span>
+              <em>SITE</em>
+            </div>
+            <div class="gauge" style="--sig:var(--gas)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v3H9zM9.5 6v3.5a4.5 4.5 0 0 0-2 3.7V19a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-5.8a4.5 4.5 0 0 0-2-3.7V6"/><path d="M10 15h4"/></svg>
+              <span>الغازات الطبية</span>
+              <em>MED GAS</em>
+            </div>
             <div class="panel-foot">
-              <div><b>٤</b><span>أنظمة</span></div>
-              <div><b>٢</b><span>مستويان</span></div>
+              <div><b>٦</b><span>دورات</span></div>
               <div><b>٣</b><span>برامج</span></div>
+              <div><b>✓</b><span>شهادة إتمام</span></div>
             </div>
           </aside>
         </div>
@@ -466,8 +490,9 @@
           <span class="kicker" data-reveal>لماذا تختار هذا المسار؟</span>
           <h2 data-reveal style="--d:70ms">لأنه يغطي دورة العمل الميكانيكية كاملة، لا جزءًا منها.</h2>
           <p data-reveal style="--d:140ms">
-            تبدأ من حساب الأحمال والاختيار الهندسي، وتنتهي بمخطط تنفيذي جاهز للتسليم في الموقع —
-            وهي المهارات نفسها التي يطلبها المكتب الاستشاري ومقاول التنفيذ.
+            ٦ دورات تبدأ من حساب الأحمال والاختيار الهندسي، وتمرّ بالمخطط التنفيذي،
+            وتنتهي عند تنفيذ العمل واستلامه في الموقع — وهي المهارات نفسها التي يطلبها
+            المكتب الاستشاري ومقاول التنفيذ.
           </p>
         </div>
 
@@ -478,7 +503,7 @@
             </div>
             <span class="card-code">HVAC</span>
             <h3>تصميم أنظمة التكييف</h3>
-            <p>حساب الأحمال الحرارية ببرنامج <span class="ltr">HAP</span>، وتصميم توزيع الهواء وشبكات المياه المثلجة، واختيار النظام المناسب.</p>
+            <p>حساب الأحمال الحرارية ببرنامج <span class="ltr">HAP</span>، وتوزيع الهواء وشبكات المياه المثلجة، وأنظمة الشيلر والمضخات وأنواع المحابس.</p>
           </article>
 
           <article class="card" style="--sig:var(--fire); --d:80ms" data-reveal>
@@ -487,7 +512,7 @@
             </div>
             <span class="card-code">FIRE FIGHTING</span>
             <h3>أنظمة مكافحة الحريق</h3>
-            <p>توزيع كبائن الحريق والرشاشات التلقائية، والحسابات الهيدروليكية، وتصميم غرفة المضخات وسعات الخزانات.</p>
+            <p>توزيع كبائن الحريق والرشاشات التلقائية، والحسابات الهيدروليكية، وغرفة المضخات، وحساب زمن الإطفاء وعدد الأسطوانات.</p>
           </article>
 
           <article class="card" style="--sig:var(--plumb)" data-reveal>
@@ -496,7 +521,7 @@
             </div>
             <span class="card-code">PLUMBING</span>
             <h3>التغذية والصرف</h3>
-            <p>تصميم شبكات المياه والصرف الصحي وتصريف الأمطار، مع اختيار المضخات والخزانات بالحسابات الصحيحة.</p>
+            <p>تغذية المياه الباردة والساخنة وحساب الاحتياجات المائية، والصرف ومياه الأمطار، وأقطار المواسير والمضخات والخزانات.</p>
           </article>
 
           <article class="card" style="--sig:var(--draft)" data-reveal>
@@ -505,7 +530,25 @@
             </div>
             <span class="card-code">SHOP DRAWING</span>
             <h3>أعمال المكتب الفني</h3>
-            <p>إعداد المخططات التنفيذية وتنسيق الأنظمة على <span class="ltr">AutoCAD</span> بما يجعل مخرجاتك جاهزة للاعتماد.</p>
+            <p>تحليل مستندات المكتب الفني، وورقة التتبع وقائمة المواد، ورسم الأعمال وإخراج اللوحات التنفيذية.</p>
+          </article>
+
+          <article class="card" style="--sig:var(--site)" data-reveal>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9.5 21v-5h5v5"/><path d="M9.5 11.5h5"/></svg>
+            </div>
+            <span class="card-code">MECHANICAL SITE</span>
+            <h3>التنفيذ بالموقع</h3>
+            <p>قراءة المستندات الفنية وطرق التركيب السليمة، وإجراءات استلام الأعمال وتنفيذ الاختبارات ومراجعة المخططات.</p>
+          </article>
+
+          <article class="card" style="--sig:var(--gas)" data-reveal>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v3H9zM9.5 6v3.5a4.5 4.5 0 0 0-2 3.7V19a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-5.8a4.5 4.5 0 0 0-2-3.7V6"/><path d="M10 15h4"/></svg>
+            </div>
+            <span class="card-code">MEDICAL GAS</span>
+            <h3>الغازات الطبية</h3>
+            <p>أنظمة الغازات الطبية في المستشفيات: المكونات والبنية التحتية، وحجم المصادر، وانخفاض الضغط، وأقطار الأنابيب.</p>
           </article>
         </div>
 
@@ -513,7 +556,15 @@
           <b>البرامج التي تتقنها:</b>
           <span class="tool">AutoCAD</span>
           <span class="tool">HAP</span>
-          <span class="tool">AutoFLUID</span>
+          <span class="tool">ETAB</span>
+        </div>
+
+        <div class="audience" data-reveal>
+          <b>المسار موجّه إلى:</b>
+          <span>مهندسي الميكانيكا والتصميم الداخلي</span>
+          <span>طلاب وخريجي كليات الهندسة الميكانيكية أو التقنية</span>
+          <span>الفنيين والمشرفين في شركات المقاولات والمكاتب الهندسية</span>
+          <span>الراغبين في تطوير مسارهم المهني في التصميم والتطبيق الميكانيكي</span>
         </div>
       </div>
     </section>
@@ -523,10 +574,14 @@
       <div class="container why-grid">
         <div>
           <span class="kicker" data-reveal>لماذا إنجوسوفت؟</span>
-          <h2 data-reveal style="--d:70ms; font-size:clamp(23px,3.1vw,33px); margin-top:12px">بيت المهندس الأول.</h2>
-          <div class="plate" data-reveal style="--d:140ms">
+          <h2 data-reveal style="--d:70ms; font-size:clamp(23px,3.1vw,33px); margin-top:12px">لأن وقتك وطاقتك لا تُقدَّر بثمن.</h2>
+          <div class="stat" data-reveal style="--d:110ms">
+            <b>٥٠ ألف</b>
+            <span>متدرب فأكثر، من مصر والسعودية ودول عربية عديدة</span>
+          </div>
+          <div class="plate" data-reveal style="--d:170ms">
             <img src="assets/mechanical-course-official.webp" alt="المسار الاحترافي للهندسة الميكانيكية من إنجوسوفت" width="640" height="360" loading="lazy">
-            <p>مسار مبنيّ على احتياج سوق العمل الفعلي في السعودية والخليج، ويُدرَّس بالعربية مع مصطلحات المهنة الإنجليزية.</p>
+            <p>منصة تدريب هندسي متخصصة في الميكانيكا والكهرباء والمدني وإدارة المشاريع وتقنية <span class="ltr">BIM</span>.</p>
           </div>
         </div>
 
@@ -534,29 +589,29 @@
           <div class="reason" data-reveal>
             <span class="reason-no">01</span>
             <div>
-              <b>تبدأ من مستواك أنت</b>
-              <span>المستوى التأسيسي يناسبك حتى لو كانت خبرتك محدودة، ثم تنتقل للمستوى الاحترافي حين تجهز.</span>
+              <b>تتعلّم مهارة تستخدمها مباشرة</b>
+              <span>تدريب بمهارات عملية يمكنك تطبيقها فورًا في مشاريعك أو عملك، لتبدأ تحقيق نتائج حقيقية دون تأخير.</span>
             </div>
           </div>
           <div class="reason" data-reveal style="--d:80ms">
             <span class="reason-no">02</span>
             <div>
-              <b>تعلُّم بالتطبيق لا بالتلقين</b>
-              <span>شرح عملي وتمارين على مشاريع حقيقية تمرّ فيها بخطوات التصميم كاملة حتى إخراج المخطط.</span>
+              <b>ابدأ أسرع من غيرك</b>
+              <span>خلاصة الخبرة بشكل منظّم ومباشر، لتتجنّب العشوائية وتصل إلى مستوى جاهز للعمل في وقت أقصر.</span>
             </div>
           </div>
           <div class="reason" data-reveal style="--d:160ms">
             <span class="reason-no">03</span>
             <div>
-              <b>مدربون من داخل السوق</b>
-              <span>يشرحون لك ما يحدث فعلًا في المكاتب الاستشارية ومواقع التنفيذ، لا النظري فقط.</span>
+              <b>فائدة لا تتوقف عند الكورس</b>
+              <span>دعم ومتابعة تساعدك على التطور حتى بعد انتهاء التدريب، لتستمر في التقدم وتحقيق أهدافك المهنية.</span>
             </div>
           </div>
           <div class="reason" data-reveal style="--d:240ms">
             <span class="reason-no">04</span>
             <div>
-              <b>شهادة ومتابعة بعد المسار</b>
-              <span>شهادة معتمدة من إنجوسوفت، ومستشار تدريب يساعدك على اختيار خطوتك المهنية التالية.</span>
+              <b>تختار طريقة دراستك</b>
+              <span>دورات مسجّلة أو حضورية، مبنية على تطبيق عملي حقيقي وليس محتوى نظريًا فقط.</span>
             </div>
           </div>
         </div>
